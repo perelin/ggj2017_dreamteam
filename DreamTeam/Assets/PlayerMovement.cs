@@ -5,23 +5,45 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	public BezierCurve curve;
+	public const float speed = 2f;
 
-	// Use this for initialization
-	void Start () {
-		
-		if (curve == null) {
-			Debug.LogError ("Did not specify BezierCurve for Player");
+	private float currentProgress = 0;
+
+
+	private float progressPerTime {
+		get {
+			Debug.Log (curve.length);
+			return (PlayerMovement.speed / curve.length);
 		}
 	}
 
+	// Use this for initialization
+	void Start () {
+		if (curve == null) {
+			Debug.LogError ("Did not specify BezierCurve for Player");
+		}
+			
+	}
 
-	private float progress = 0;
+
+
+
+	bool IsWalking() {
+		return Input.GetKey(KeyCode.Space);
+	}
+
+
 	// Update is called once per frame
 	void Update () {
-		progress = progress <= 1 ? progress + 0.01f : 0;
+		
+		if (IsWalking ()) {
+			currentProgress += progressPerTime * Time.deltaTime;
 
-		this.gameObject.transform.position = curve.GetPointAt (progress);
-
-
+			if (currentProgress >= 1) {
+				currentProgress = 1;
+			}
+		}
+			
+		this.gameObject.transform.position = curve.GetPointAt (currentProgress);
 	}
 }
