@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float progressPerTime {
 		get {
-			Debug.Log (curve.length);
 			return (PlayerMovement.speed / curve.length);
 		}
 	}
@@ -24,14 +23,10 @@ public class PlayerMovement : MonoBehaviour {
 		}
 			
 	}
-
-
-
-
+		
 	bool IsWalking() {
 		return Input.GetKey(KeyCode.Space);
 	}
-
 
 	// Update is called once per frame
 	void Update () {
