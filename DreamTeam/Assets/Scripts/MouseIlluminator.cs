@@ -16,8 +16,8 @@ public class MouseIlluminator : MonoBehaviour
     public bool UseEyeTracker = true;
 
 	// Use this for initialization
-	void Start () {
-		
+	void OnAwake () {
+		EyeTracking.Initialize();
 	}
 	
 	// Update is called once per frame
@@ -31,7 +31,7 @@ public class MouseIlluminator : MonoBehaviour
 
 	        Vector3 lookPos = Vector3.zero;
 
-	        if (UseEyeTracker)
+	        if (isEyeTracking())
 	        {
                 // get eye tracking point
                 GazePoint gazePoint = EyeTracking.GetGazePoint();
@@ -54,5 +54,10 @@ public class MouseIlluminator : MonoBehaviour
 
 	    }
 
+    }
+
+    private bool isEyeTracking()
+    {
+        return ! (UseEyeTracker && EyeTracking.GetGazeTrackingStatus().Status == GazeTrackingStatus.NotSupported);
     }
 }
