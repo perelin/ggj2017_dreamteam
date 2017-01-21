@@ -12,43 +12,45 @@ public class CameraManager : MonoBehaviour
     public Camera MainCamera;
     public Transform MoodColor;
 
-    [SerializeField]
-    private float _size;
-    public float Size
+    public float _zoom;
+    public float Zoom
     {
         set
         {
             LightnessCamera.orthographicSize = value;
             LightsCamera.orthographicSize = value;
             MainCamera.orthographicSize = value;
-            _size = value;
+            _zoom = value;
             MoodColor.localScale = new Vector3(1920 / 5 * value, 1080 / 5 * value, 1);
         }
         get
         {
-            return _size;
+            return _zoom;
         }
     }
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        _zoom = MainCamera.orthographicSize;
+
         // flip the cameras for direct X ...
-      /*  if (!(SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D11 ||
-            SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D12 ||
-            SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D9))
-        {
-            LightnessCamera.transform.localRotation = Quaternion.Euler(0, 180, 180);
-            LightnessCamera.transform.localPosition = new Vector3(0, 0, 10);
-            LightsCamera.transform.localRotation = Quaternion.Euler(0, 180, 180);
-            LightsCamera.transform.localPosition = new Vector3(0, 0, 10);
-        }
-        else
-        {
-            LightnessCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            LightnessCamera.transform.localPosition = new Vector3(0, 0, -10);
-            LightsCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            LightsCamera.transform.localPosition = new Vector3(0, 0, -10);
-        }*/
+        /*  if (!(SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D11 ||
+              SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D12 ||
+              SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D9))
+          {
+              LightnessCamera.transform.localRotation = Quaternion.Euler(0, 180, 180);
+              LightnessCamera.transform.localPosition = new Vector3(0, 0, 10);
+              LightsCamera.transform.localRotation = Quaternion.Euler(0, 180, 180);
+              LightsCamera.transform.localPosition = new Vector3(0, 0, 10);
+          }
+          else
+          {
+              LightnessCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
+              LightnessCamera.transform.localPosition = new Vector3(0, 0, -10);
+              LightsCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
+              LightsCamera.transform.localPosition = new Vector3(0, 0, -10);
+          }*/
     }
 	
 	// Update is called once per frame
