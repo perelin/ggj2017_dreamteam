@@ -9,7 +9,7 @@ public class CombiningCamera : MonoBehaviour {
 
     public RenderTexture lightnessTexture;
     public RenderTexture lightsTexture;
-
+    public Material SwitchUVMaterial;
     // Creates a private material used to the effect
     void Awake()
     {
@@ -21,8 +21,8 @@ public class CombiningCamera : MonoBehaviour {
     {
         RenderTexture temp = RenderTexture.GetTemporary(1920, 1080);
         RenderTexture temp2 = RenderTexture.GetTemporary(1920, 1080);
-        Graphics.Blit(lightsTexture, temp);
-        Graphics.Blit(lightnessTexture, temp2);
+        Graphics.Blit(lightsTexture, temp, SwitchUVMaterial);
+        Graphics.Blit(lightnessTexture, temp2, SwitchUVMaterial);
 
         material.SetTexture("_Alpha", temp);
         material.SetTexture("_LightnessTex", temp2);
