@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 
 public class MouseIlluminator : MonoBehaviour
@@ -26,6 +27,7 @@ public class MouseIlluminator : MonoBehaviour
             var mousePos = Input.mousePosition;
 	        var objectPos = Camera.ScreenToWorldPoint(mousePos);
 	        light.transform.position = objectPos;
+	        light.transform.localPosition -= new Vector3(0, 0, light.transform.localPosition.z);
 
 	    }
 
