@@ -7,15 +7,10 @@ public class CameraScript : MonoBehaviour {
 
 	public GameObject camTarget;
 
-	private float camXOffset;
-
-
-	void Start () {
-		camXOffset = 3;
-	}
+	public float camXOffset = 3;
 
 	// Update is called once per frame
 	void Update () {
-		this.gameObject.transform.position = new Vector3 (camTarget.transform.position.x + 3, 0, 0);
+		this.gameObject.transform.position = new Vector3 (camTarget.transform.position.x + camXOffset, 0, 0);
 	}
 }
