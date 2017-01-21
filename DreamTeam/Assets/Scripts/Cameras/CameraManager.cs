@@ -14,7 +14,7 @@ public class CameraManager : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         // flip the cameras for direct X ...
-        if ((SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D11 ||
+      /*  if (!(SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D11 ||
             SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D12 ||
             SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D9))
         {
@@ -24,12 +24,12 @@ public class CameraManager : MonoBehaviour
             LightsCamera.transform.localPosition = new Vector3(0, 0, 10);
         }
         else
-        {
+        {*/
             LightnessCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
             LightnessCamera.transform.localPosition = new Vector3(0, 0, -10);
             LightsCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
             LightsCamera.transform.localPosition = new Vector3(0, 0, -10);
-        }
+        //}
     }
 	
 	// Update is called once per frame
