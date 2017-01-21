@@ -20,5 +20,6 @@ public class CameraManagerEditor : Editor {
         {
             myTarget.Size = 50;
         }
+       // DrawDefaultInspector();
     }
 }

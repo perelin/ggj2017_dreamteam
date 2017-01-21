@@ -10,6 +10,7 @@ public class CameraManager : MonoBehaviour
     public Camera LightnessCamera;
     public Camera LightsCamera;
     public Camera MainCamera;
+    public Transform MoodColor;
 
     [SerializeField]
     private float _size;
@@ -21,6 +22,7 @@ public class CameraManager : MonoBehaviour
             LightsCamera.orthographicSize = value;
             MainCamera.orthographicSize = value;
             _size = value;
+            MoodColor.localScale = new Vector3(1920 / 5 * value, 1080 / 5 * value, 1);
         }
         get
         {
