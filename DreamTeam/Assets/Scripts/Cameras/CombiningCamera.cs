@@ -19,8 +19,17 @@ public class CombiningCamera : MonoBehaviour {
     // Postprocess the image
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        material.SetTexture("_Alpha", lightsTexture);
-        material.SetTexture("_LightnessTex", lightnessTexture);
+        RenderTexture temp = RenderTexture.GetTemporary(1920, 1080);
+        RenderTexture temp2 = RenderTexture.GetTemporary(1920, 1080);
+        Graphics.Blit(lightsTexture, temp);
+        Graphics.Blit(lightnessTexture, temp2);
+
+        material.SetTexture("_Alpha", temp);
+        material.SetTexture("_LightnessTex", temp2);
         Graphics.Blit(source, destination, material);
+        RenderTexture.ReleaseTemporary(temp);
+        RenderTexture.ReleaseTemporary(temp2);
+
+
     }
 }
