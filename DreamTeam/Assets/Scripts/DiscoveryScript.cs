@@ -30,7 +30,7 @@ public class DiscoveryScript : MonoBehaviour {
 			currentTimer += Time.deltaTime;
 			if (currentTimer > timeToAction) {
 				DoAction ();
-				Object.Destroy(this.gameObject);
+				Object.Destroy(this);
 			}
 
 		// otherwise decrease

@@ -58,6 +58,8 @@ public class MouseIlluminator : MonoBehaviour
 
     private bool isEyeTracking()
     {
-        return ! (UseEyeTracker && EyeTracking.GetGazeTrackingStatus().Status == GazeTrackingStatus.NotSupported);
+        var status = EyeTracking.GetGazeTrackingStatus().Status;
+        return UseEyeTracker && status != GazeTrackingStatus.NotSupported && status != GazeTrackingStatus.Unknown 
+            && status != GazeTrackingStatus.GazeNotTracked;
     }
 }
