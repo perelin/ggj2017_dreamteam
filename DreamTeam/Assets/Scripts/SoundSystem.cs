@@ -19,7 +19,32 @@ using System.Collections;
 	private bool inTransition = false;
 	private float transtitionStartTime;
 
-	// random environment sounds
+	public SoundList[] soundLists;
+
+
+	public enum MoodType {
+	    breathing,
+	    fearful,
+	    laughing,
+	    clicking,		
+	}
+
+
+	public MoodType currentMood = MoodType.breathing;
+
+	public void SetMood(MoodType newMood) {
+	    if (newMood == currentMood) return; 
+	    currentMood = newMood;
+	    switch (newMood) {
+		case MoodType.fearful: noisesList = soundLists[0].clips; break;
+		case MoodType.laughing: noisesList = soundLists[1].clips; break;
+		case MoodType.breathing: noisesList = soundLists[2].clips; break;
+		case MoodType.clicking: noisesList = soundLists[3].clips; break;
+	    }
+	}	
+	
+
+	// random environment sounds based on mood
 	public AudioClip[] noisesList;
 	public float minNoiseInterval = 0.5f;
 	public float maxNoiseInterval = 5f;
@@ -92,6 +117,19 @@ using System.Collections;
 
 
 	    // for debugging purposes only
+	    if (Input.GetKey(KeyCode.Alpha6)) {
+		SetMood(MoodType.breathing);
+	    }
+	    if (Input.GetKey(KeyCode.Alpha7)) {
+		SetMood(MoodType.fearful);
+	    }
+	    if (Input.GetKey(KeyCode.Alpha8)) {
+		SetMood(MoodType.clicking);
+	    }
+	    if (Input.GetKey(KeyCode.Alpha9)) {
+		SetMood(MoodType.laughing);
+	    }
+
 	    if (Input.GetKey(KeyCode.Alpha1)) {
 		ChangeMusic(0);
 	    }
