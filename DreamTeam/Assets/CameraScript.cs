@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
 
-	// Use this for initialization
+
+	public GameObject camTarget;
+
+	private float camXOffset;
+
+
 	void Start () {
-		
+		camXOffset = 3;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+		this.gameObject.transform.position = new Vector3 (camTarget.transform.position.x + 3, 0, 0);
 	}
 }
