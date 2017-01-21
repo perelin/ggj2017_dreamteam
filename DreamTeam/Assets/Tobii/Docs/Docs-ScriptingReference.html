@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tobii-eyetracking-for-unity-scripting-reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
+</head>
+<body>
+<p><div id="top-eyetracking-unity-scripting-reference"/></p>
+<h1 id="tobii-eyetracking-sdk-for-unity-5-scripting-reference">Tobii EyeTracking SDK for Unity 5 - Scripting Reference</h1>
+<p><strong>SDK version: 2.0 Beta</strong> (Compatibility: Unity 5.4, 5.3 or 5.2)</p>
+<p><a href="./tobii-eyetracking-for-unity-manual.html">Switch to Manual</a></p>
+<p><div id="contents-scripting-reference"/></p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#eyetracking-static-api">EyeTracking static API</a><ul>
+<li><a href="#eyetracking">EyeTracking</a></li><li><a href="#eyetracking-getgazepoint">EyeTracking.GetGazePoint</a></li><li><a href="#eyetracking-getgazetrackingstatus">EyeTracking.GetGazeTrackingStatus</a></li><li><a href="#eyetracking-getfocusedobject">EyeTracking.GetFocusedObject</a></li><li><a href="#eyetracking-getuserpresence">EyeTracking.GetUserPresence</a></li><li><a href="#eyetracking-initialize">EyeTracking.Initialize</a></li><li><a href="#eyetracking-setcurrentuserviewpointcamera">EyeTracking.SetCurrentUserViewPointCamera</a></li><li><a href="#eyetracking-unsubscribegazepointdata">EyeTracking.UnsubscribeGazePointData</a></li></ul>
+</li><li><a href="#components">Components</a><ul>
+<li><a href="#gazeaware">GazeAware</a></li></ul>
+</li><li><a href="#data-types-and-enums">Data Types and Enums</a><ul>
+<li><a href="#gazepoint">GazePoint</a></li><li><a href="#gazetracking">GazeTracking</a> </li><li><a href="#gazetrackingstatus">GazeTrackingStatus</a></li><li><a href="#userpresence">UserPresence</a></li><li><a href="#userpresencestatus">UserPresenceStatus</a></li></ul>
+</li><li><a href="#advanced-api">Advanced API</a><ul>
+<li><a href="#devicestatus">DeviceStatus</a></li><li><a href="#engineavailability">EngineAvailability</a></li><li><a href="#eyetrackinghost-getengineavailability">EyeTrackingHost.GetEngineAvailability</a></li><li><a href="#eyetrackinghost-getinstance">EyeTrackingHost.GetInstance</a></li><li><a href="#focusedobject">FocusedObject</a></li><li><a href="#idataprovider-lt-gazepoint-gt">IDataProvider&lt;GazePoint&gt;</a></li><li><a href="#idataprovider-lt-gazepoint-gt-last">IDataProvider&lt;GazePoint&gt;.Last</a></li><li><a href="#idataprovider-lt-gazepoint-gt-getframeconsistentdatapoint">IDataProvider&lt;GazePoint&gt;.GetFrameConsistentDataPoint</a></li><li><a href="#idataprovider-lt-gazepoint-gt-getdatapointssince">IDataProvider&lt;GazePoint&gt;.GetDataPointsSince</a></li><li><a href="#idataprovider-lt-gazepoint-gt-start">IDataProvider&lt;GazePoint&gt;.Start</a></li><li><a href="#idataprovider-lt-gazepoint-gt-stop">IDataProvider&lt;GazePoint&gt;.Stop</a></li><li><a href="#ieyetrackinghost">IEyeTrackingHost</a></li><li><a href="#ieyetrackinghost-displaysize">IEyeTrackingHost.DisplaySize</a></li><li><a href="#ieyetrackinghost-eyetrackingdevicestatus">IEyeTrackingHost.EyeTrackingDeviceStatus</a></li><li><a href="#ieyetrackinghost-getgazepointdataprovider">IEyeTrackingHost.GetGazePointDataProvider</a></li><li><a href="#ieyetrackinghost-initialize">IEyeTrackingHost.Initialize</a></li><li><a href="#ieyetrackinghost-screenbounds">IEyeTrackingHost.ScreenBounds</a></li><li><a href="#ieyetrackinghost-shutdown">IEyeTrackingHost.Shutdown</a></li><li><a href="#igazefocus">IGazeFocus</a></li><li><a href="#igazefocusable">IGazeFocusable</a></li><li><a href="#iregistergazefocusable">IRegisterGazeFocusable</a></li><li><a href="#istatevalue-lt-t-gt">IStateValue&lt;T&gt;</a></li><li><a href="#itimestamped">ITimestamped</a></li></ul>
+</li></ul>
+<hr>
+<p><div id="eyetracking-static-api"/></p>
+<h1 id="eyetracking-static-api">EYETRACKING STATIC API</h1>
+<p>The EyeTracking static API provides direct access to the most common and useful functionality of the Tobii EyeTracking Framework. This is a great starting point.</p>
+<ul>
+<li><a href="#eyetracking">EyeTracking</a></li><li><a href="#eyetracking-getgazepoint">EyeTracking.GetGazePoint</a></li><li><a href="#eyetracking-getgazetrackingstatus">EyeTracking.GetGazeTrackingStatus</a></li><li><a href="#eyetracking-getfocusedobject">EyeTracking.GetFocusedObject</a></li><li><a href="#eyetracking-getuserpresence">EyeTracking.GetUserPresence</a></li><li><a href="#eyetracking-initialize">EyeTracking.Initialize</a></li><li><a href="#eyetracking-setcurrentuserviewpointcamera">EyeTracking.SetCurrentUserViewPointCamera</a></li><li><a href="#eyetracking-unsubscribegazepointdata">EyeTracking.UnsubscribeGazePointData</a></li></ul>
+<p><div id="eyetracking"/></p>
+<h2 id="eyetracking">EyeTracking</h2>
+<p>static class in <code>Tobii.EyeTracking</code> namespace<br><a href="./tobii-eyetracking-for-unity-manual.html#eyetracking-static-api">&rarr; View in Manual</a></p>
+<h3 id="description">Description</h3>
+<p><code>EyeTracking</code> is a static class with static methods to easily access data from a connected Tobii eye tracker.</p>
+<p>To get access to the static <code>EyeTracking</code> API, import the Tobii EyeTracking Framework unitypackage into your project and add the following using (at the top of the script file where you want to use Tobii EyeTracking):</p>
+<pre><code class="lang-csharp">using Tobii.EyeTracking;
+</code></pre>
+<p>The <code>EyeTracking</code> static API provides simplified and straightforward access to eye tracker data and can be used for the most common use cases. For more advanced control over the data, use the underlying <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> directly. </p>
+<p>The <code>EyeTracking</code> static API also provides information about which <code>UnityEngine.GameObject</code> the user focuses using eye-gaze. Only gaze-aware objects will be considered for gaze focus detection. The easiest way to make an object gaze-aware is to add the <a href="#gazeaware"><code>GazeAware</code></a> component to it (for an alternative way, see <a href="#igazefocusable"><code>IGazeFocusable</code></a>).</p>
+<h3 id="static-functions">Static Functions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function name</th>
+<th style="text-align:left">Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="#eyetracking-getgazepoint">GetGazePoint</a></td>
+<td style="text-align:left">Gets the last (newest) <a href="#gazepoint"><code>GazePoint</code></a>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#eyetracking-getfocusedobject">GetFocusedObject</a></td>
+<td style="text-align:left">Gets the game object with gaze focus.  </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#eyetracking-getuserpresence">GetUserPresence</a></td>
+<td style="text-align:left">Gets the user presence status.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#eyetracking-getgazetrackingstatus">GetGazeTrackingStatus</a></td>
+<td style="text-align:left">Gets the gaze tracking status.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#eyetracking-initialize">Initialize</a></td>
+<td style="text-align:left">Initializes EyeTracking and starts the gaze point data provider.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#eyetracking-setcurrentuserviewpointcamera">SetCurrentUserViewPointCamera</a></td>
+<td style="text-align:left">Sets the camera used for gaze focus detection.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#eyetracking-unsubscribegazepointdata">UnsubscribeGazePointData</a></td>
+<td style="text-align:left">Unsubscribes from gaze point data.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="eyetracking-getgazepoint"/></p>
+<h2 id="eyetracking-getgazepoint">EyeTracking.GetGazePoint</h2>
+<p>static function on <a href="#eyetracking"><code>EyeTracking</code></a><br><code>public static</code> <a href="#gazepoint"><code>GazePoint</code></a> <code>GetGazePoint()</code></p>
+<p><a href="./tobii-eyetracking-for-unity-manual.html#gazepoint-data">&rarr; View related entry in Manual</a></p>
+<h3 id="description">Description</h3>
+<p>Gets the last <a href="#gazepoint"><code>GazePoint</code></a>. </p>
+<p>Once this value has been read in a frame, all other reads within that frame will retrieve the same value. A newer value cannot be read until the next frame. To get the newest possible value in the frame, use a data provider and read the <a href="#idataprovider-lt-gazepoint-gt-last"><code>Last</code></a> property instead.</p>
+<p>The <a href="#eyetracking"><code>EyeTracking</code></a> class uses an underlying <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider</code></a> which is initialized lazily if <a href="#eyetracking-initialize"><code>EyeTracking.Initialize()</code></a> is not called first. This means that the data provider is started at the first call to this function (or the <a href="#eyetracking-getfocusedobject"><code>EyeTracking.GetFocusedObject()</code></a> function), and the function will return an invalid value for some frames until valid data is received from the eye tracker.</p>
+<p>If the data provider has been unsubscribed by calling <a href="#eyetracking-unsubscribegazepointdata"><code>EyeTracking.UnsubscribeGazePointData()</code></a> a call to <code>EyeTracking.GetGazePoint()</code> will re-subscribe to the data provider and start it again if it was stopped. This means that for some frames the data might be invalid.</p>
+<pre><code class="lang-csharp">using Unity.Engine;
+using Tobii.EyeTracking;
+
+public class ExampleClass : MonoBehaviour
+{
+    void Update()
+    {
+        GazePoint gazePoint = EyeTracking.GetGazePoint();
+        if (gazePoint.IsValid)
+        {
+            print(&quot;Gaze point on Screen (X,Y): &quot; + gazePoint.Screen.X + &quot;, &quot; + gazePoint.Screen.Y);
+        }
+    }
+}
+</code></pre>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="eyetracking-getgazetrackingstatus"/></p>
+<h2 id="eyetracking-getgazetrackingstatus">EyeTracking.GetGazeTrackingStatus</h2>
+<p>static function on <a href="#eyetracking"><code>EyeTracking</code></a><br><code>public static</code> <a href="#gazetracking"><code>GazeTracking</code></a> <code>GetGazeTrackingStatus()</code></p>
+<p>Get the gaze tracking status, which indicates if the user&#39;s eye-gaze is currently tracked or not by the eye tracker. This status can be used in combination with a data point&#39;s IsValid flag to know if a data point from <a href="#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a> is recent and valid.</p>
+<p>This status reflects the status of the eye tracker rather than of the EyeTracker Framework. Before a gaze point data provider has been initialized this status can return <a href="#gazetrackingstatus"><code>GazeTrackingStatus.GazeTracked</code></a> even though <a href="#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a> returns an invalid <a href="#gazepoint"><code>GazePoint</code></a> in the same frame. To avoid this, call <a href="#eyetracking-initialize"><code>EyeTracking.Initialize()</code></a> some frames before calling these functions.</p>
+<pre><code class="lang-csharp">using Unity.Engine;
+using Tobii.EyeTracking;
+
+public class ExampleClass : MonoBehaviour
+{
+    void Update()
+    {
+        GazeTracking gazeTracking = EyeTracking.GetGazeTrackingStatus();
+        if (gazeTracking.IsTrackingEyeGaze)
+        {
+            print(&quot;The eye tracker is tracking the user&#39;s eye-gaze.&quot;);
+        }
+
+        print(&quot;Gaze tracking status is: &quot; + gazeTracking.Status);
+    }
+}
+</code></pre>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="eyetracking-getfocusedobject"/></p>
+<h2 id="eyetracking-getfocusedobject">EyeTracking.GetFocusedObject</h2>
+<p>static function on <a href="#eyetracking"><code>EyeTracking</code></a><br><code>public static UnityEngine.GameObject GetFocusedObject()</code><br><a href="./tobii-eyetracking-for-unity-manual.html#gaze-focus-and-the-gaze-aware-component">&rarr; View related entry in Manual</a></p>
+<h3 id="description">Description</h3>
+<p>Gets the game object with gaze focus. Only game objects that are gaze-aware will be considered for gaze focus detection. The easiest way to make a game object gaze-aware is to add the <a href="#gazeaware"><code>GazeAware</code></a> component to it. Another way is to implement your own custom gaze-aware component, see <a href="#igazefocusable"><code>IGazeFocusable</code></a>.</p>
+<pre><code class="lang-csharp">using Unity.Engine;
+using Tobii.EyeTracking;
+
+public class ExampleClass : MonoBehaviour
+{
+    void Update()
+    {
+        GameObject focusedObject = EyeTracking.GetFocusedObject();
+        if (null != focusedObject)
+        {
+            print(&quot;The focused game object is: &quot; + focusedObject.name + &quot; (ID: &quot; + focusedObject.GetInstanceID() + &quot;)&quot;);
+        }
+    }
+}
+</code></pre>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="eyetracking-getuserpresence"/></p>
+<h2 id="eyetracking-getuserpresence">EyeTracking.GetUserPresence</h2>
+<p>static function on <a href="#eyetracking"><code>EyeTracking</code></a><br><code>public static</code> <a href="#userpresence"><code>UserPresence</code></a> <code>GetUserPresence()</code></p>
+<p>Get the user presence, which indicates if there is a user present in front of the screen.</p>
+<p>The <a href="#userpresence"><code>UserPresence</code></a> property <code>IsUserPresent</code> is true if the system detects a user in front of the eye tracker. It is false if the system cannot detect a user in front of the eye tracker, but it is also false if the user presence status is <a href="#userpresencestatus"><code>UserPresenceStatus.Unknown</code></a>. This means that this property can give false negatives if the user presence status is unknown. For example during initializing, or if eye tracking has been disabled by the user, the user can be in front of the eye tracker but <code>IsUserPresent</code> is false. If you need to avoid false negatives for these special cases, use the more detailed information in the <code>Status</code> property instead.</p>
+<pre><code class="lang-csharp">using Unity.Engine;
+using Tobii.EyeTracking;
+
+public class ExampleClass : MonoBehaviour
+{
+    void Update()
+    {
+        UserPresence userPresence = EyeTracking.GetUserPresence();
+        if (gazeTracking.IsUserPresent)
+        {
+            print(&quot;A user is present in front of the screen.&quot;);
+        }
+
+        print(&quot;User presence status is: &quot; + userPresence.Status);
+    }
+}
+</code></pre>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="eyetracking-initialize"/></p>
+<h2 id="eyetracking-initialize">EyeTracking.Initialize</h2>
+<p>static function on <a href="#eyetracking"><code>EyeTracking</code></a><br><code>public static void Initialize()</code></p>
+<h3 id="description">Description</h3>
+<p>Initializes EyeTracking and starts the gaze point data provider. </p>
+<p>Use this method if you want to initialize the gaze point data provider explicitly rather than to use the default lazy initialization. If this method is not used, the gaze point data provider will be initialized and started at the first call to <a href="#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a> or <a href="#eyetracking-getfocusedobject"><code>EyeTracking.GetFocusedObject()</code></a>, and there will be some frames before that method returns valid gaze points.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="eyetracking-setcurrentuserviewpointcamera-camera"/></p>
+<h2 id="eyetracking-setcurrentuserviewpointcamera">EyeTracking.SetCurrentUserViewPointCamera</h2>
+<p>static function on <a href="#eyetracking"><code>EyeTracking</code></a><br><code>public static void SetCurrentUserViewPointCamera(Camera camera)</code></p>
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">camera</td>
+<td style="text-align:left"><code>UnityEngine.Camera</code></td>
+<td style="text-align:left">The camera that defines the user&#39;s current view point</td>
+</tr>
+</tbody>
+</table>
+<h3 id="description">Description</h3>
+<p>Sets the camera that defines the user&#39;s current view point. The camera is used for gaze focus detection.</p>
+<p>By default <code>Camera.main</code> is used for gaze focus detection to decide which game object the user&#39;s eye-gaze is focused on. If the main camera is not the camera that defines the user&#39;s current view point, this function can be used to override the main camera with a custom camera.</p>
+<p>To decide which camera corresponds to the user&#39;s view point, it should fulfill the following:</p>
+<ul>
+<li>given the current <code>GazePoint gazePoint</code></li><li>when calling <code>camera.ScreenPointToRay(gazePoint.Screen)</code></li><li>the resulting ray into world space should be a continuation of the &quot;ray&quot; from the user&#39;s eyes to the gaze point on the  display monitor</li></ul>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="eyetracking-unsubscribegazepointdata"/></p>
+<h2 id="eyetracking-unsubscribegazepointdata">EyeTracking.UnsubscribeGazePointData</h2>
+<p>static function on <a href="#eyetracking"><code>EyeTracking</code></a><br><code>public static void UnsubscribeGazePointData()</code></p>
+<h3 id="description">Description</h3>
+<p>Unsubscribes from gaze point data.</p>
+<p>Call this method to make the EyeTracking class unsubscribe from the gaze point data provider. If there are no other subscribers the data provider will be stopped completely, otherwise it will keep providing data to the other subscribers.</p>
+<p>The EyeTracking class will re-subscribe to gaze point data at the next call to <a href="#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a>.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<hr>
+<p><div id="components"/></p>
+<h1 id="components">COMPONENTS</h1>
+<p>This section describes components that can be used out-of-the-box to add eye-gaze features to game objects. </p>
+<p><div id="gazeaware"/></p>
+<h2 id="gazeaware">GazeAware</h2>
+<p>class in <code>Tobii.EyeTracking</code> namespace / Inherits from: <code>UnityEngine.MonoBehaviour</code> / Implements: <a href="#igazefocusable"><code>IGazeFocusable</code></a><br><a href="./tobii-eyetracking-for-unity-manual.html#gaze-focus-and-the-gaze-aware-component">&rarr; View related entry in Manual</a></p>
+<h3 id="description">Description</h3>
+<p>Makes the game object it is attached to gaze-aware, meaning aware of the user&#39;s eye-gaze on it. </p>
+<p>The <code>HasGazeFocus</code> property indicates if the user is currently looking at the game object or not. Which gaze-aware game object that currently has gaze focus can also be queried by calling <a href="#eyetracking-getfocusedobject"><code>EyeTracking.GetFocusedObject()</code></a>. Only game objects with the <code>GazeAware</code> component or some other component that implements the <a href="#igazefocusable"><code>IGazeFocusable</code></a> interface can get gaze focus.</p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HasGazeFocus</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if the game object it is attached to has gaze focus, false otherwise</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<hr>
+<p><div id="data-types-and-enums"/></p>
+<h1 id="data-types-and-enums">DATA TYPES AND ENUMS</h1>
+<p>This section describes the data types and enums used with the static <a href="#eyetracking"><code>EyeTracking</code></a> API. Additional types and enums are described in the advanced API.</p>
+<ul>
+<li><a href="#gazepoint">GazePoint</a></li><li><a href="#gazetracking">GazeTracking</a></li><li><a href="#gazetrackingstatus">GazeTrackingStatus</a></li><li><a href="#userpresence">UserPresence</a></li><li><a href="#userpresencestatus">UserPresenceStatus</a></li></ul>
+<p><div id="gazepoint"/></p>
+<h2 id="gazepoint">GazePoint</h2>
+<p>value type in <code>Tobii.EyeTracking</code> namespace<br><a href="./tobii-eyetracking-for-unity-manual.html#gazepoint">&rarr; View related entry in Manual</a></p>
+<h3 id="description">Description</h3>
+<p>A <code>GazePoint</code> represents a point on the screen where the user is looking (or where the user&#39;s eye-gaze intersects with the screen plane).</p>
+<p>Always check if a <code>GazePoint</code> is valid before using it, checking either <code>IsValid</code> or <code>IsWithinScreenBounds</code>. Invalid points will be returned by the EyeTracking framework during startup and shutdown, a few frames after calling <a href="#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a> (or <a href="#eyetracking-initialize"><code>EyeTracking.Initialize()</code></a>) for the first time, and if the data provider is stopped for some reason. Invalid points will always be returned on unsupported standalone platforms, currently Mac and Linux.</p>
+<p>The <code>SequentialID</code> can be used to uniquely identify a <code>GazePoint</code> and also which point is the newest. A newer point will have a <code>SequentialID</code> that is greater than an older point.</p>
+<p>Two <code>GazePoint</code>s can have the same <code>Timestamp</code> if they were received in the same frame.</p>
+<p><code>IsWithinScreenBounds</code> will flicker between true and false when the user looks close to the edges of the game view. If you need a more stable check around the edges, use <code>IsValid</code> and check against <code>Screen.height</code> and <code>Screen.width</code> with some small margin.</p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GUI</td>
+<td style="text-align:left"><code>Vector2</code></td>
+<td style="text-align:left">The gaze point in GUI space (where (0,0) is upper left corner)</td>
+</tr>
+<tr>
+<td style="text-align:left">IsValid</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if the point is valid, false otherwise</td>
+</tr>
+<tr>
+<td style="text-align:left">IsWithinScreenBounds</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if the point is valid and within <code>Screen.height</code> and <code>Screen.width</code>, false otherwise</td>
+</tr>
+<tr>
+<td style="text-align:left">Screen</td>
+<td style="text-align:left"><code>Vector2</code></td>
+<td style="text-align:left">The gaze point in screen space (where (0,0) is lower left corner)</td>
+</tr>
+<tr>
+<td style="text-align:left">SequentialID</td>
+<td style="text-align:left"><code>double</code></td>
+<td style="text-align:left">A sequential ID, where a newer the point has a greater value than an older point</td>
+</tr>
+<tr>
+<td style="text-align:left">Timestamp</td>
+<td style="text-align:left"><code>float</code></td>
+<td style="text-align:left">The <code>Time.time</code> timestamp of the frame when the gaze point was received from the eye tracker</td>
+</tr>
+<tr>
+<td style="text-align:left">Viewport</td>
+<td style="text-align:left"><code>Vector2</code></td>
+<td style="text-align:left">The gaze point in viewport space </td>
+</tr>
+</tbody>
+</table>
+<h3 id="static-properties">Static properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Invalid</td>
+<td style="text-align:left">Creates a value representing an invalid <code>GazePoint</code></td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="gazetracking"/></p>
+<h2 id="gazetracking">GazeTracking</h2>
+<p>value type in <code>Tobii.EyeTracking</code> namespace</p>
+<h3 id="description">Description</h3>
+<p>Value type holding eye-gaze tracking status information. See also <a href="#eyetracking-getgazetrackingstatus"><code>EyeTracking.GetGazeTrackingStatus()</code></a>.</p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">IsTrackingEyeGaze</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if the user&#39;s eye-gaze is tracked, false otherwise</td>
+</tr>
+<tr>
+<td style="text-align:left">Status</td>
+<td style="text-align:left"><a href="#gazetrackingstatus"><code>GazeTrackingStatus</code></a></td>
+<td style="text-align:left">The status as an enum value (gives more detailed information)</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="gazetrackingstatus"/></p>
+<h2 id="gazetrackingstatus">GazeTrackingStatus</h2>
+<p>enum in <code>Tobii.EyeTracking</code> namespace</p>
+<h3 id="description">Description</h3>
+<p>Describes possible gaze tracking statuses. See also <a href="#eyetracking-getgazetrackingstatus"><code>EyeTracking.GetGazeTrackingStatus()</code></a>.</p>
+<h3 id="values">Values</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Value name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">Gaze tracking status is unknown, the system might for example be initializing</td>
+</tr>
+<tr>
+<td style="text-align:left">GazeTracked</td>
+<td style="text-align:left">The user&#39;s eye-gaze is tracked</td>
+</tr>
+<tr>
+<td style="text-align:left">GazeNotTracked</td>
+<td style="text-align:left">The user&#39;s eye-gaze is not tracked</td>
+</tr>
+<tr>
+<td style="text-align:left">NotSupported</td>
+<td style="text-align:left">Gaze tracking status is not supported on the Togii Engine version the user has</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="userpresence"/></p>
+<h2 id="userpresence">UserPresence</h2>
+<p>value type in <code>Tobii.EyeTracking</code> namespace</p>
+<h3 id="description">Description</h3>
+<p>Value type holding user presence status information. </p>
+<p><code>IsUserPresent</code> can give false negatives for example during initialization when the user presence status is <a href="#userpresencestatus"><code>UserPresenceStatus.Unknown</code></a>. </p>
+<p>See also <a href="#eyetracking-getuserpresence"><code>EyeTracking.GetUserPresence()</code></a>.</p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">IsUserPresent</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if <code>Status</code> is <a href="#userpresencestatus"><code>UserPresenceStatus.Present</code></a>, false otherwise</td>
+</tr>
+<tr>
+<td style="text-align:left">Status</td>
+<td style="text-align:left"><a href="#userpresencestatus"><code>UserPresenceStatus</code></a></td>
+<td style="text-align:left">The status as an enum (gives more detailed information)</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="userpresencestatus"/></p>
+<h2 id="userpresencestatus">UserPresenceStatus</h2>
+<p>enum in <code>Tobii.EyeTracking</code> namespace</p>
+<h3 id="description">Description</h3>
+<p>Describes possible user presence statuses. See also <a href="#eyetracking-getuserpresence"><code>EyeTracking.GetUserPresence()</code></a>.</p>
+<h3 id="values">Values</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Value name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">User presence is unknown, the system might for example be initializing</td>
+</tr>
+<tr>
+<td style="text-align:left">Present</td>
+<td style="text-align:left">User is present</td>
+</tr>
+<tr>
+<td style="text-align:left">NotPresent</td>
+<td style="text-align:left">User is not present</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<hr>
+<p><div id="advanced-api-features"/></p>
+<h1 id="advanced-api-features">ADVANCED API FEATURES</h1>
+<p>The advanced API provides additional features as well as the features of the static API, but for some features they assume familiarity with more advanced C# language features and object oriented programming. The entry point to the advanced API is the <a href="#eyetrackinghost-getinstance"><code>EyeTrackingHost.GetInstance()</code></a> function, which returns an <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a>.</p>
+<ul>
+<li><a href="#devicestatus">DeviceStatus</a></li><li><a href="#engineavailability">EngineAvailability</a></li><li><a href="#eyetrackinghost-getengineavailability">EyeTrackingHost.GetEngineAvailability</a></li><li><a href="#eyetrackinghost-getinstance">EyeTrackingHost.GetInstance</a></li><li><a href="#focusedobject">FocusedObject</a></li><li><a href="#idataprovider-lt-gazepoint-gt">IDataProvider&lt;GazePoint&gt;</a></li><li><a href="#idataprovider-lt-gazepoint-gt-last">IDataProvider&lt;GazePoint&gt;.Last</a></li><li><a href="#idataprovider-lt-gazepoint-gt-getframeconsistentdatapoint">IDataProvider&lt;GazePoint&gt;.GetFrameConsistentDataPoint</a></li><li><a href="#idataprovider-lt-gazepoint-gt-getdatapointssince">IDataProvider&lt;GazePoint&gt;.GetDataPointsSince</a></li><li><a href="#idataprovider-lt-gazepoint-gt-start">IDataProvider&lt;GazePoint&gt;.Start</a></li><li><a href="#idataprovider-lt-gazepoint-gt-stop">IDataProvider&lt;GazePoint&gt;.Stop</a></li><li><a href="#ieyetrackinghost">IEyeTrackingHost</a></li><li><a href="#ieyetrackinghost-displaysize">IEyeTrackingHost.DisplaySize</a></li><li><a href="#ieyetrackinghost-eyetrackingdevicestatus">IEyeTrackingHost.EyeTrackingDeviceStatus</a></li><li><a href="#ieyetrackinghost-getgazepointdataprovider">IEyeTrackingHost.GetGazePointDataProvider</a></li><li><a href="#ieyetrackinghost-initialize">IEyeTrackingHost.Initialize</a></li><li><a href="#ieyetrackinghost-screenbounds">IEyeTrackingHost.ScreenBounds</a></li><li><a href="#ieyetrackinghost-shutdown">IEyeTrackingHost.Shutdown</a></li><li><a href="#igazefocus">IGazeFocus</a></li><li><a href="#igazefocusable">IGazeFocusable</a></li><li><a href="#iregistergazefocusable">IRegisterGazeFocusable</a></li><li><a href="#istatevalue-lt-t-gt">IStateValue&lt;T&gt;</a></li><li><a href="#itimestamped">ITimestamped</a></li></ul>
+<p><div id="devicestatus"/></p>
+<h2 id="devicestatus">DeviceStatus</h2>
+<p>enum in <code>Tobii.EyeTracking</code> namespace  <strong><em>[Advanced]</em></strong></p>
+<h3 id="description">Description</h3>
+<p>Describes possible eye tracking device statuses. See also <a href="#ieyetrackinghost-eyetrackingdevicestatus"><code>IEyeTrackingHost.EyeTrackingDeviceStatus</code></a>.</p>
+<h3 id="values">Values</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Value name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Disabled</td>
+<td style="text-align:left">The eye tracking device is disabled by the user (it might be unplugged)</td>
+</tr>
+<tr>
+<td style="text-align:left">NotAvailable</td>
+<td style="text-align:left">The eye tracking device is unavailable</td>
+</tr>
+<tr>
+<td style="text-align:left">Pending</td>
+<td style="text-align:left">Connection to the eye tracking device is pending (initializing or connecting)</td>
+</tr>
+<tr>
+<td style="text-align:left">Tracking</td>
+<td style="text-align:left">The eye tracking device is tracking (that is, trying to track the user&#39;s eye-gaze)</td>
+</tr>
+<tr>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">The eye tracking device is in an unknown state</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="engineavailability"/></p>
+<h2 id="engineavailability">EngineAvailability</h2>
+<p>enum in <code>Tobii.EyeTracking</code> namespace  <strong><em>[Advanced]</em></strong></p>
+<h3 id="description">Description</h3>
+<p>Describes possible engine availability states. See also <a href="#eyetrackinghost-getengineavailability"><code>EyeTrackingHost.GetEngineAvailability()</code></a>.</p>
+<h3 id="values">Values</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Value name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">NotAvailable</td>
+<td style="text-align:left">Tobii Engine is not available (not installed)</td>
+</tr>
+<tr>
+<td style="text-align:left">NotRunning</td>
+<td style="text-align:left">Tobii Engine is installed but not running</td>
+</tr>
+<tr>
+<td style="text-align:left">Running</td>
+<td style="text-align:left">Tobii Engine is running</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="eyetrackinghost-getengineavailability"/></p>
+<h2 id="eyetrackinghost-getengineavailability">EyeTrackingHost.GetEngineAvailability</h2>
+<p>static function on <code>EyeTrackingHost</code> <strong><em>[Advanced]</em></strong><br><code>public static</code> <a href="#engineavailability"><code>EngineAvailability</code></a> <code>GetEngineAvailability()</code></p>
+<h3 id="description">Description</h3>
+<p>Engine availability on the current system and platform. </p>
+<p>Use this method to check if there is a Tobii Engine runtime available or not. Useful query for games that build standalone for Linux and Mac, to block or not use Tobii EyeTracking features on these platforms.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a><div id="eyetrackinghost-getinstance"/></p>
+<p><div id="eyetrackinghost-getinstance"/></p>
+<h2 id="eyetrackinghost-getinstance">EyeTrackingHost.GetInstance</h2>
+<p>static function on <code>EyeTrackingHost</code> <strong><em>[Advanced]</em></strong><br><code>public static</code> <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> <code>GetInstance()</code></p>
+<h3 id="description">Description</h3>
+<p>This is the access point for all advanced API features in the Tobii EyeTracking Framework for Unity. It should always be used to access the features on the <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a>, it should never be used to store a reference to the eye tracking host since that could lead to unexpected behavior during startup, shutdown and on unsupported platforms. </p>
+<p>It returns an <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> and the implementation depends on where in the application life cycle the game is, and on which platform. During startup and shutdown, and on unsupported standalone platforms (currently Mac and Linux), this method returns a stub implementation of the eye tracking host. The stub implementation can be used as the real implementation, but it will only deliver invalid gaze data, states and gaze focus objects. Make sure your game is implemented in a way so that it can handle invalid data. In most cases there is an <code>IsValid</code> flag that can be checked before using a value.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="focusedobject"/></p>
+<h2 id="focusedobject">FocusedObject</h2>
+<p>value type in <code>Tobii.EyeTracking</code> namespace</p>
+<h3 id="description">Description</h3>
+<p>Value type holding information about a focused game object. See also <a href="#igazefocus"><code>IGazeFocus</code></a>.</p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">IsValid</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if the <code>FocusedObject</code> is valid and its properties not null, false otherwise.</td>
+</tr>
+<tr>
+<td style="text-align:left">Key</td>
+<td style="text-align:left"><code>int</code></td>
+<td style="text-align:left">A unique integer key that can be used to identify or index this <code>FocusedObject</code></td>
+</tr>
+<tr>
+<td style="text-align:left">GameObject</td>
+<td style="text-align:left"><code>UnityEngine.GameObject</code></td>
+<td style="text-align:left">Focused <code>UnityEninge.GameObject</code>. Null if <code>FocusedObject</code> is invalid.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="static-functions">Static Functions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Invalid</td>
+<td style="text-align:left">Creates an invalid <code>FocusedObject</code> (with a null <code>GameObject</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="public-functions">Public Functions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Equals</td>
+<td style="text-align:left">Returns true if a given <code>FocusedObject</code> equals this <code>FocusedObject</code>, false otherwise.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="idataprovider-lt-gazepoint-gt"/></p>
+<h2 id="idataprovider-lt-gazepoint-gt-">IDataProvider&lt;GazePoint&gt;</h2>
+<p>interface in <code>Tobii.EyeTracking</code> namespace <strong><em>[Advanced]</em></strong></p>
+<h3 id="description">Description</h3>
+<p>A <code>IDataProvider&lt;GazePoint&gt;</code> provides functions for controlling and accessing a stream of <a href="#gazepoint"><code>GazePoint</code></a> data from the eye tracker. It offers more control and functionality than the <a href="#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a> function in the static API.</p>
+<p>For performance reasons, there is only one <a href="#gazepoint">GazePoint</a> data provider instance implementing the <code>IDataProvider&lt;GazePoint&gt;</code> in the framework. This provider is shared between all client scripts/classes who will request the provider to be started and stopped using their unique token ID&#39;s. The provider is retrieved by calling <a href="#ieyetrackinghost-getgazepointdataprovider"><code>EyeTrackingHost.GetInstance().GetGazePointDataProvider()</code></a>.</p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="#idataprovider-lt-gazepoint-gt-last">Last</a></td>
+<td style="text-align:left"><a href="#gazepoint"><code>GazePoint</code></a></td>
+<td style="text-align:left">Gets the last (newest) <a href="#gazepoint"><code>GazePoint</code></a>. Can change at any time during a frame.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="functions">Functions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="#idataprovider-lt-gazepoint-gt-getframeconsistentdatapoint">GetFrameConsistentDataPoint</a></td>
+<td style="text-align:left">Gets the last <a href="#gazepoint"><code>GazePoint</code></a> that can be consistently read in the frame</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#idataprovider-lt-gazepoint-gt-getdatapointssince">GetDataPointsSince</a></td>
+<td style="text-align:left">Gets data points received since an <a href="#itimestamped"><code>ITimestamped</code></a> gaze point</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#idataprovider-lt-gazepoint-gt-start">Start</a></td>
+<td style="text-align:left">Starts the data provider</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#idataprovider-lt-gazepoint-gt-stop">Stop</a></td>
+<td style="text-align:left">Requests to stops the data provider</td>
+</tr>
+</tbody>
+</table>
+<h3 id="access-and-usage">Access and Usage</h3>
+<pre><code class="lang-csharp">
+using Tobii.EyeTracking;
+using System.Collections.Generic;
+...
+
+public class ExampleClass : MonoBehaviour
+{
+    private IDataProvider&lt;GazePoint&gt; _gazePointProvider;
+    private ITimestamped _lastHandledPoint;
+
+    OnStart()
+    {
+        _gazePointProvider = EyeTrackingHost.GetInstance().GetGazePointDataProvider();
+    }
+
+    OnEnable()
+    {
+        // Start the provider with the game object&#39;s instance ID as a unique token
+        _gazePointProvider.Start(gameObject.GetInstanceID());
+    }
+
+    OnDisable()
+    {
+        // Request to stop the provider for this unique token
+        _gazePointProvider.Stop(gameObject.GetInstanceID());
+    }
+
+    Update()
+    {
+        // Handle single gaze point:
+        GazePoint last = _gazePointProvider.Last; // the last data point received from the eye tracker
+        GazePoint frameConsistent = _gazePointProvider.GetFrameConsistentDataPoint() // same as EyeTracking.GetGazePoint()
+        // ...
+
+        // Or handle all gaze points from the eye tracker:
+        IEnumerable&lt;GazePoint&gt; pointsSinceLastHandled = _gazePointProvider.GetDataPointsSince(_lastHandledPoint);
+        foreach (point in pointsSinceLastHandled)
+        {
+            // handle each point that has arrived since previous Update()
+            // ...
+        }
+        _lastHandledPoint = pointsSinceLastHandled.Last();
+    }
+}
+</code></pre>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="idataprovider-lt-gazepoint-gt-last"/></p>
+<h2 id="idataprovider-lt-gazepoint-gt-last">IDataProvider&lt;GazePoint&gt;.Last</h2>
+<p>property on <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> <strong><em>[Advanced]</em></strong><br><a href="#gazepoint"><code>GazePoint</code></a> <code>Last { get; }</code></p>
+<h3 id="description">Description</h3>
+<p>Gets the last <a href="#gazepoint"><code>GazePoint</code></a> that has been received from the eye tracker. </p>
+<p>This value can change at any time during a frame. If you want two separate scripts to be guaranteed to act on the same value in the same frame, use the <a href="#idataprovider-lt-gazepoint-gt-getframeconsistentdatapoint"><code>GetFrameConsistentDataPoint</code></a> property instead.</p>
+<p>See <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> for a code sample.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="idataprovider-lt-gazepoint-gt-getframeconsistentdatapoint"/></p>
+<h2 id="idataprovider-lt-gazepoint-gt-getframeconsistentdatapoint">IDataProvider&lt;GazePoint&gt;.GetFrameConsistentDataPoint</h2>
+<p>function on <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> <strong><em>[Advanced]</em></strong><br><code>public</code> <a href="#gazepoint"><code>GazePoint</code></a> <code>GetFrameConsistentDataPoint()</code></p>
+<h3 id="description">Description</h3>
+<p>Gets the last <code>GazePoint</code> that can be read consistently in the frame. When this function or the <a href="#idataprovider-lt-gazepoint-gt-last"><code>Last</code></a> property has been called in a frame from any script, all the following calls in the same frame to this function will return that same value no matter if the <a href="#idataprovider-lt-gazepoint-gt-last"><code>Last</code></a> property is changed to a newer value.</p>
+<p>This is the same value as returned by <a href="#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a> in the static API.</p>
+<p>See <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> for a code sample.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="idataprovider-lt-gazepoint-gt-getdatapointssince"/></p>
+<h2 id="idataprovider-lt-gazepoint-gt-getdatapointssince">IDataProvider&lt;GazePoint&gt;.GetDataPointsSince</h2>
+<p>function on <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> <strong><em>[Advanced]</em></strong><br><code>public IEnumerable&lt;</code><a href="#gazepoint"><code>GazePoint</code></a><code>&gt; GetDataPointsSince(</code><a href="#itimestamped"><code>ITimestamped</code></a> <code>dataPoint)</code></p>
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">dataPoint</td>
+<td style="text-align:left"><code>ITimestamped</code></td>
+<td style="text-align:left">The function will return <a href="#gazepoint"><code>GazePoint</code></a>s newer than the timestamped dataPoint.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="description">Description</h3>
+<p>Gets all <a href="#gazepoint"><code>GazePoint</code></a>s that have been received from the eye tracker since the supplied <a href="#itimestamped"><code>ITimestamped</code></a> gaze point, but no older than 500 ms. </p>
+<p>This function is useful when you want to do your own advanced filtering of the gaze point data and include all received gaze points in the calculation. If you use <a href="#idataprovider-lt-gazepoint-gt-last"><code>Last</code></a> or <a href="#idataprovider-lt-gazepoint-gt-getframeconsistentdatapoint"><code>GetFrameConsistentDataPoint</code></a> you will likely miss some points since the game and the eye tracker will probably not run in the exact same frequency.</p>
+<p>The <a href="#gazepoint"><code>GazePoint</code></a> data type implements the <a href="#itimestamped"><code>ITimestamped</code></a> interface, meaning that this function will take a <a href="#gazepoint"><code>GazePoint</code></a> as a parameter. By saving the last handled gaze point from the previous Update loop, this point can be used as a parameter for the next Update loop and all gaze points that were received from the eye tracker since then can be retrieved using this function.</p>
+<p>See <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> for a code sample.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="idataprovider-lt-gazepoint-gt-start"/></p>
+<h2 id="idataprovider-lt-gazepoint-gt-start">IDataProvider&lt;GazePoint&gt;.Start</h2>
+<p>function on <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> <strong><em>[Advanced]</em></strong><br><code>void Start(int subscriberId)</code></p>
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">subscriberId</td>
+<td style="text-align:left"><code>int</code></td>
+<td style="text-align:left">A unique subscriber ID for the calling script/class </td>
+</tr>
+</tbody>
+</table>
+<h3 id="description">Description</h3>
+<p>Asynchronous request to start the data provider. After the data provider has been started data will continuously be updated in the <a href="#idataprovider-lt-gazepoint-gt-last"><code>Last</code></a> property in the frequency it is received from the eye tracker. Since the function is asynchronous, and it will take a few frames until the first data is received from the eye tracker.</p>
+<p>The function takes a unique subscriber ID as a parameter. For performance reasons, there is only one <a href="#gazepoint">GazePoint</a> data provider instance implementing the <code>IDataProvider&lt;GazePoint&gt;</code> in the framework. This provider is shared between all client scripts/classes who will request the provider to be started and stopped using their unique token ID&#39;s. To get a unique ID, you can use <code>gameObject.GetInstanceID()</code> if the client is a <code>MonoBehaviour</code> script. For a non-MonoBehaviour class, you can create a <code>UnityEngine.GameObject</code> as a private field and use its instance ID.  </p>
+<p>See <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> for a code sample.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="idataprovider-lt-gazepoint-gt-stop"/></p>
+<h2 id="idataprovider-lt-gazepoint-gt-stop">IDataProvider&lt;GazePoint&gt;.Stop</h2>
+<p>function on <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> <strong><em>[Advanced]</em></strong><br><code>void Stop(int subscriberId)</code></p>
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">subscriberId</td>
+<td style="text-align:left"><code>int</code></td>
+<td style="text-align:left">A unique subscriber ID for the calling script/class </td>
+</tr>
+</tbody>
+</table>
+<h3 id="description">Description</h3>
+<p>Asynchronous requests to stop the data provider. If there are no other clients that are currently requesting the provider to keep providing data, the provider will stop the stream of data from the the eye tracker and stop updating the <a href="#idataprovider-lt-gazepoint-gt-last"><code>Last</code></a> property.</p>
+<p>The function takes a unique subscriber ID as a parameter. For the data provider to work as expected, every client script/class should have its own unique ID and call the <a href="#idataprovider-lt-gazepoint-gt-start"><code>Start</code></a> and <code>Stop</code> function with this ID. See <a href="#idataprovider-lt-gazepoint-gt-start"><code>Start</code></a> for more info.</p>
+<p>See <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> for a code sample.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="ieyetrackinghost"/></p>
+<h2 id="ieyetrackinghost">IEyeTrackingHost</h2>
+<p>interface in <code>Tobii.EyeTracking</code> namespace <strong><em>[Advanced]</em></strong></p>
+<h3 id="description">Description</h3>
+<p>This interface describes the advanced API features that can be accessed using the static function <a href="#eyetrackinghost-getinstance"><code>EyeTrackingHost.GetInstance()</code></a>.</p>
+<p>For more information about:</p>
+<ul>
+<li>User Presence, see <a href="#eyetracking-getuserpresence"><code>EyeTracking.GetUserPresence()</code></a></li><li>Gaze Focus, see <a href="#igazefocus"><code>IGazeFocus</code></a></li><li>Gaze Tracking, see <a href="#eyetracking-getgazetrackingstatus"><code>EyeTracking.GetGazeTrackingStatus()</code></a> and compare with <a href="#ieyetrackinghost-eyetrackingdevicestatus"><code>EyeTrackingDeviceStatus</code></a></li></ul>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">IsInitialized</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if the host is initialized, false otherwise</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#ieyetrackinghost-displaysize">DisplaySize</a></td>
+<td style="text-align:left"><a href="#istatevalue-lt-t-gt"><code>IStateValue</code></a><code>&lt;Vector2&gt;</code></td>
+<td style="text-align:left">Size of the eye tracked screen, in mm (width, height)</td>
+</tr>
+<tr>
+<td style="text-align:left">EngineVersion</td>
+<td style="text-align:left"><code>System.Version</code></td>
+<td style="text-align:left">Tobii Engine version installed on the system the game is running on</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#ieyetrackinghost-eyetrackingdevicestatus">EyeTrackingDeviceStatus</a></td>
+<td style="text-align:left"><a href="#devicestatus"><code>DeviceStatus</code></a></td>
+<td style="text-align:left">The eye tracking status of the eye tracker</td>
+</tr>
+<tr>
+<td style="text-align:left">GazeFocus</td>
+<td style="text-align:left"><a href="#igazefocus"><code>IGazeFocus</code></a></td>
+<td style="text-align:left">Gets the gaze focus handler </td>
+</tr>
+<tr>
+<td style="text-align:left">GazeTracking</td>
+<td style="text-align:left"><a href="#gazetracking"><code>GazeTracking</code></a></td>
+<td style="text-align:left">Status of the eye-gaze tracking</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#ieyetrackinghost-screenbounds">ScreenBounds</a></td>
+<td style="text-align:left"><a href="#istatevalue-lt-t-gt"><code>IStateValue</code></a><code>&lt;UnityEngine.Rect&gt;</code></td>
+<td style="text-align:left">Bounds of the eye tracked screen, in desktop pixels</td>
+</tr>
+<tr>
+<td style="text-align:left">UserPresence</td>
+<td style="text-align:left"><a href="#userpresence"><code>UserPresence</code></a></td>
+<td style="text-align:left">Status of user presence in front of the screen</td>
+</tr>
+<tr>
+<td style="text-align:left">UserProfileName</td>
+<td style="text-align:left"><a href="#istatevalue-lt-t-gt"><code>IStateValue</code></a><code>&lt;string&gt;</code></td>
+<td style="text-align:left">Name of the current calibration user profile</td>
+</tr>
+<tr>
+<td style="text-align:left">UserProfileNames</td>
+<td style="text-align:left"><a href="#istatevalue-lt-t-gt"><code>IStateValue</code></a><code>&lt;string[]&gt;</code></td>
+<td style="text-align:left">A list of available calibration user profiles</td>
+</tr>
+</tbody>
+</table>
+<h3 id="functions">Functions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="#ieyetrackinghost-getgazepointdataprovider">GetGazePointDataProvider</a></td>
+<td style="text-align:left">Gets a <a href="#gazepoint"><code>GazePoint</code></a> data provider</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#ieyetrackinghost-initialize">Initialize</a></td>
+<td style="text-align:left">Initializes the eye tracking host</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#ieyetrackinghost-shutdown">Shutdown</a></td>
+<td style="text-align:left">Signals the eye tracking host that the game is shutting down</td>
+</tr>
+<tr>
+<td style="text-align:left">SetCurrentProfile</td>
+<td style="text-align:left">Sets the current calibration user profile</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="ieyetrackinghost-displaysize"/></p>
+<h2 id="ieyetrackinghost-displaysize">IEyeTrackingHost.DisplaySize</h2>
+<p>property on <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> <strong><em>[Advanced]</em></strong><br><a href="#istatevalue-lt-t-gt"><code>IStateValue</code></a> <code>&lt;Vector2&gt; DisplaySize { get; }</code></p>
+<h3 id="description">Description</h3>
+<p>Gets the engine state Display Size as a <code>UnityEngine.Vector2</code> (width, height), in millimeters. This is the screen size in millimeters of the display monitor set up for eye tracking.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="ieyetrackinghost-eyetrackingdevicestatus"/></p>
+<h2 id="ieyetrackinghost-eyetrackingdevicestatus">IEyeTrackingHost.EyeTrackingDeviceStatus</h2>
+<p>property on <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> <strong><em>[Advanced]</em></strong><br><a href="#devicestatus"><code>DeviceStatus</code></a> <code>EyeTrackingDeviceStatus { get; }</code></p>
+<p><a href="./tobii-eyetracking-for-unity-manual.html#system-configuration-and-states">&rarr; View related entry in Manual</a></p>
+<h3 id="description">Description</h3>
+<p>The eye tracking status of the eye tracker device. </p>
+<p>If this property returns a status of <a href="#devicestatus"><code>DeviceStatus.Tracking</code></a> it means that the eye tracker is connected, up and running and trying to track the user&#39;s eye-gaze. Whenever it succeeds to track the eye-gaze, it will calculate a gaze point on the screen. No gaze point will be calculated if the eye-gaze cannot be tracked for the moment, for example if the user&#39;s eyes are closed or partly closed by a blink. (To follow the instantaneous status of the eye tracker&#39;s tracking of the eye-gaze, use the <code>GazeTracking</code> state). </p>
+<p>Any other device status than <a href="#devicestatus"><code>DeviceStatus.Tracking</code></a> means that no eye tracking data can be expected - the eye tracker could for example not be connected, be initializing, or eye tracking could be disabled by the user. </p>
+<p>Note that this status will always return an invalid value the first time it is called. A valid value will be returned within some frames after that first call.</p>
+<pre><code class="lang-csharp">DeviceStatus deviceStatus = EyeTrackingHost.GetInstance().EyeTrackingDeviceStatus;
+if (DeviceStatus.Tracking == deviceStatus)
+{
+    //...
+}
+</code></pre>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="ieyetrackinghost-getgazepointdataprovider"/></p>
+<h2 id="ieyetrackinghost-getgazepointdataprovider">IEyeTrackingHost.GetGazePointDataProvider</h2>
+<p>function on <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> <strong><em>[Advanced]</em></strong><br><a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> <code>GetGazePointDataProvider()</code></p>
+<h3 id="description">Description</h3>
+<p>Gets a provider of <a href="#gazepoint"><code>GazePoint</code></a> data. See <a href="#idataprovider-lt-gazepoint-gt"><code>IDataProvider&lt;GazePoint&gt;</code></a> for code example of usage.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="ieyetrackinghost-initialize"/></p>
+<h2 id="ieyetrackinghost-initialize">IEyeTrackingHost.Initialize</h2>
+<p>function on <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> <strong><em>[Advanced]</em></strong><br><code>void Initialize()</code></p>
+<h3 id="description">Description</h3>
+<p>Initializes the <code>IEyeTrackingHost</code> and connection to the Tobii Engine.</p>
+<p>This function is automatically called when the <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> <code>MonoBehaviour</code> instance is enabled (from the <code>Start()</code> function). It only needs to be called explicitly if you need to access a function or property on the <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> before the <code>Start</code> message has been processed by all game objects in the scene.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="ieyetrackinghost-screenbounds"/></p>
+<h2 id="ieyetrackinghost-screenbounds">IEyeTrackingHost.ScreenBounds</h2>
+<p>property on <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> <strong><em>[Advanced]</em></strong><br><a href="#istatevalue-lt-t-gt"><code>IStateValue</code></a> <code>&lt;UnityEngine.Rect&gt; ScreenBounds { get; }</code></p>
+<h3 id="description">Description</h3>
+<p>Gets the engine state Screen Bounds in pixels. This is the eye-tracked display monitor&#39;s screen size in physical (desktop) pixels.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="ieyetrackinghost-shutdown"/></p>
+<h2 id="ieyetrackinghost-shutdown">IEyeTrackingHost.Shutdown</h2>
+<p>function on <a href="#ieyetrackinghost"><code>IEyeTrackingHost</code></a> <strong><em>[Advanced]</em></strong></p>
+<h3 id="description">Description</h3>
+<p>Signals that the game application is shutting down. This will clear all settings and data providers. After this method has been called <a href="#eyetrackinghost-getinstance"><code>EyeTrackingHost.GetInstance()</code></a> will return a stub implementation that only provides invalid states and data points, making sure no inconsistent data or behavior during shutdown.</p>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="igazefocus"/></p>
+<h2 id="igazefocus">IGazeFocus</h2>
+<p>interface in <code>Tobii.EyeTracking</code> namespace <strong><em>[Advanced]</em></strong><br><a href="./tobii-eyetracking-for-unity-manual.html#gaze-focus-and-the-gaze-aware-component">&rarr; View related entry in Manual</a></p>
+<h3 id="description">Description</h3>
+<p>Defines the public interface of the gaze focus handler. </p>
+<p>The gaze focus handler is responsible for calculating and keeping track of which object the user is focusing his or her eye-gaze on. Only gaze-aware objects can get gaze focus. The gaze focus handler automatically keeps track of objects that have the <a href="#gazeaware"><code>GazeAware</code></a> component. (Custom gaze-aware components implementing <a href="#igazefocusable"><code>IGazeFocusable</code></a> should register themselves using the <a href="#iregistergazefocusable"><code>IRegisterGazeFocusable</code></a> interface). </p>
+<p>See <a href="#eyetracking-setcurrentuserviewpointcamera"><code>EyeTracking.SetCurrentUserViewPointCamera()</code></a> for more information about the settable camera.</p>
+<pre><code class="lang-csharp">IGazeFocus gazeFocusHandler = EyeTrackingHost.GetInstance().GazeFocus;
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Camera</td>
+<td style="text-align:left"><code>UnityEngine.Camera</code></td>
+<td style="text-align:left">Settable camera that defines the user&#39;s current view point</td>
+</tr>
+<tr>
+<td style="text-align:left">FocusedObject</td>
+<td style="text-align:left"><a href="#focusedobject"><code>FocusedObject</code></a></td>
+<td style="text-align:left">Gets the currently focused object. Invalid if no object is focused.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="igazefocusable"/></p>
+<h2 id="igazefocusable">IGazeFocusable</h2>
+<p>interface in <code>Tobii.EyeTracking</code> namespace <strong><em>[Advanced]</em></strong><br><a href="./tobii-eyetracking-for-unity-manual.html#gaze-focus-and-the-gaze-aware-component">&rarr; View related entry in Manual</a></p>
+<h3 id="description">Description</h3>
+<p>Defines a component that can be registered in the gaze focus handler so that the <code>UnityEngine.GameObject</code> it belongs to can be focused using eye-gaze. (See also <a href="#igazefocus"><code>IGazeFocus</code></a>.)</p>
+<p>When an <code>IGazeFocusable</code> object is looked at, its <code>UpdateGazeFocus</code> function is called with <code>hasFocus</code> set to <code>true</code>. This value can then be read in the update loop of the game object to react to being looked at.</p>
+<p>If you don&#39;t want each game object to react on its own to being looked at, you can centralize the handling using <a href="#igazefocus-focusedobject"><code>IGazeFocus.FocusedObject</code></a> (or <a href="#eyetracking-getfocusedobject"><code>EyeTracking.GetFocusedObject()</code></a>).</p>
+<p>IGazeFocusable is implemented by the <a href="#gazeaware"><code>GazeAware</code></a> component. Implement this interface if you want to create your own custom gaze-aware component. The custom gaze-aware component must register and unregister itself to and from the gaze focus handler, see <a href="#iregistergazefocusable">&#39;IRegisterGazeFocusable&#39;</a> and the source code for the <a href="#gazeaware">&#39;GazeAware&#39;</a> component below:</p>
+<pre><code class="lang-csharp">
+// This is the source code for the GazeAware component
+// Use this as a starting point to implement a custom gaze-aware component
+// The HazGazeFocus property is optional as long as the &#39;hasFocus&#39; value is handled
+// somehow, but the register/unregister code is essential.
+
+public class GazeAware : MonoBehaviour, IGazeFocusable
+{
+    public bool HasGazeFocus { get; private set; }
+
+    void OnEnable()
+    {
+        GazeFocusHandler().RegisterFocusableComponent(this);
+    }
+
+    void OnDisable()
+    {
+        GazeFocusHandler().UnregisterFocusableComponent(this);
+    }
+
+    /// &lt;summary&gt;
+    /// Function called from the gaze focus handler when the gaze focus for
+    /// this object changes.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;Since the implementation is explicit, it will not be 
+    /// visible on instances of this component (unless cast to 
+    /// &lt;see cref=&quot;IGazeFocusable&quot;/&gt;).
+    /// &lt;/remarks&gt;
+    /// &lt;param name=&quot;hasFocus&quot;&gt;True if the game object has gaze focus, 
+    /// false otherwise.&lt;/param&gt;
+    void IGazeFocusable.UpdateGazeFocus(bool hasFocus)
+    {
+        HasGazeFocus = hasFocus;
+    }
+
+    private IRegisterGazeFocusable GazeFocusHandler()
+    {
+        return (IRegisterGazeFocusable)EyeTrackingHost.GetInstance().GazeFocus;
+    }
+}
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">gameObject</td>
+<td style="text-align:left"><code>UnityEngine.GameObject</code></td>
+<td style="text-align:left">The game object the component is tied to</td>
+</tr>
+</tbody>
+</table>
+<h3 id="public-functions">Public Functions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">UpdateGazeFocus</td>
+<td style="text-align:left">Called when the focusable object&#39;s gaze focus is changed</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="iregistergazefocusable"/></p>
+<h2 id="iregistergazefocusable">IRegisterGazeFocusable</h2>
+<p>interface in <code>Tobii.EyeTracking</code> namespace <strong><em>[Advanced]</em></strong></p>
+<h3 id="description">Description</h3>
+<p>Registration API on the gaze focus handler for registering and unregistering <a href="#igazefocusable"><code>IGazeFocusable</code></a> objects/components. Only game objects with registered <a href="#igazefocusable"><code>IGazeFocusable</code></a> components can get gaze focus.</p>
+<p>Used by the <a href="#gazeaware"><code>GazeAware</code></a> component to register and unregister itself at OnEnable and OnDisable respectively.</p>
+<p>Use this API to register custom GazeAware components that implement the <a href="#igazefocusable"><code>IGazeFocusable</code></a> interface.</p>
+<pre><code class="lang-csharp">// get the gaze focus handler with the registration API:
+var gazeFocusHandler = (IRegisterGazeFocusable)EyeTrackingHost.GetInstance().GazeFocus;
+
+// register &#39;this&#39; as a custom gaze-aware component - requires that &#39;this&#39; implements IGazeFocusable
+gazeFocusHandler.RegisterFocusableComponent(this);
+</code></pre>
+<p>See also the <a href="#gazeaware"><code>GazeAware</code></a> component source code.</p>
+<h3 id="public-functions">Public Functions</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">RegisterFocusableComponent</td>
+<td style="text-align:left">Registers the supplied <a href="#igazefocusable"><code>IGazeFocusable</code></a> component so that its <code>GameObject</code> can get gaze focus</td>
+</tr>
+<tr>
+<td style="text-align:left">UnregisterFocusableComponent</td>
+<td style="text-align:left">Unregisters the supplied <a href="#igazefocusable"><code>IGazeFocusable</code></a> component</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="istatevalue-lt-t-gt"/></p>
+<h2 id="istatevalue-lt-t-gt-">IStateValue&lt;T&gt;</h2>
+<p>interface in <code>Tobii.EyeTracking</code> namespace <strong><em>[Advanced]</em></strong></p>
+<h3 id="description">Description</h3>
+<p>Value type holding information about a state value. </p>
+<p>If <code>IsValid</code> is false, the <code>Value</code> can be <code>null</code> if the type T is nullable.  </p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">IsValid</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if the state value is valid, false otherwise</td>
+</tr>
+<tr>
+<td style="text-align:left">Value</td>
+<td style="text-align:left"><code>T</code></td>
+<td style="text-align:left">State value. Can be <code>null</code> if the state value is invalid</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#top-eyetracking-unity-scripting-reference">&uarr; Back to Top</a></p>
+<p><div id="itimestamped"/></p>
+<h2 id="itimestamped">ITimestamped</h2>
+<p>interface in <code>Tobii.EyeTracking</code> namespace <strong><em>[Advanced]</em></strong></p>
+<h3 id="description">Description</h3>
+<p>Value type holding information about a timestamped data point. </p>
+<p>The <code>SequentialId</code> can be used to compare if a data point is newer than another. A higher value means a newer value.</p>
+<p>The <code>Timestamp</code> cannot be used to compare if a data point is newer than another since more than one data point can be received in the same frame and have the same <code>Time.time</code> timestamp.</p>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">IsValid</td>
+<td style="text-align:left"><code>bool</code></td>
+<td style="text-align:left">True if valid, false otherwise</td>
+</tr>
+<tr>
+<td style="text-align:left">SequentialId</td>
+<td style="text-align:left"><code>double</code></td>
+<td style="text-align:left">SequentialId for the data point. A higher value means a newer value</td>
+</tr>
+<tr>
+<td style="text-align:left">Timestamp</td>
+<td style="text-align:left"><code>float</code></td>
+<td style="text-align:left">The <code>Time.time</code> timestamp of the frame when the data point was received from the eye tracker</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
