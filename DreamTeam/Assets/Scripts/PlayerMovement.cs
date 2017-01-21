@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public const float speed = 4f;
+	public float speed = 8f;
 
 	public BezierCurve[] curves;
 
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float progressPerTime {
 		get {
-			return (PlayerMovement.speed / curves[currentCurve].length);
+			return (speed / curves[currentCurve].length);
 		}
 	}
 
