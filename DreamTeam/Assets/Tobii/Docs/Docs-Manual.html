@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tobii-eyetracking-for-unity-manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
+</head>
+<body>
+<p><div id="top-eyetracking-unity-manual"/></p>
+<h1 id="tobii-eyetracking-sdk-for-unity-5-manual">Tobii EyeTracking SDK for Unity 5 - Manual</h1>
+<p><strong>SDK version: 2.0 Beta</strong> (Compatibility: Unity 5.4, 5.3, and 5.2)</p>
+<p><a href="./tobii-eyetracking-for-unity-scripting-reference.html">Switch to Scripting Reference</a></p>
+<h2 id="good-choice">Good Choice</h2>
+<p>Thanks for choosing Tobii! You have invested your money and curiosity in an eye tracker device, let me now browse you through the steps to set you up to develop a whole new kind of game interactions using the player&#39;s eye-gaze.</p>
+<p><div id="contents-manual"/></p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#system-requirements">System Requirements</a></li><li><a href="#getting-started-explore-the-provided-demo-scenes">Getting Started - Explore the Provided Demo Scenes</a></li><li><a href="#integrating-tobii-eyetracking-with-your-game">Integrating Tobii EyeTracking with your game</a><ul>
+<li><a href="#import-the-tobii-eyetracking-assets">Import the Tobii EyeTracking Assets</a></li><li><a href="#implement-features-using-the-tobii-eyetracking-static-api">Implement features using the Tobii EyeTracking static API</a><ul>
+<li><a href="#configure-gaze-aware-layers">Configure Gaze Aware layers</a></li><li><a href="#make-game-objects-gaze-aware">Make game objects Gaze Aware</a></li><li><a href="#use-the-gaze-point-data">Use the Gaze Point data</a></li><li><a href="#dive-into-more-advanced-features">Dive into more advanced features</a></li></ul>
+</li><li><a href="#build-for-standalone">Build for Standalone</a></li></ul>
+</li><li><a href="#tobii-eyetracking-framework-for-unity">Tobii EyeTracking Framework for Unity</a><ul>
+<li><a href="#gazepoint-data">GazePoint Data</a></li><li><a href="#eyetracking-static-api">EyeTracking static API</a><ul>
+<li><a href="#invalid-data-due-to-lazy-initialization">Invalid data due to lazy initialization</a> </li></ul>
+</li><li><a href="#gaze-focus-and-the-gazeaware-component">Gaze Focus and the GazeAware component</a></li><li><a href="#user-presence-and-gaze-tracking-states">User Presence and Gaze Tracking states</a></li><li><a href="#advanced-api-features">Advanced API Features</a><ul>
+<li><a href="#custom-gaze-aware-component">Custom Gaze Aware component</a></li><li><a href="#data-provider">Data Provider</a></li><li><a href="#system-configuration-and-states">System Configuration and States</a></li></ul>
+</li></ul>
+</li><li><a href="#troubleshooting">Troubleshooting</a><ul>
+<li><a href="#tobii-eyex-client-dll-could-not-be-loaded">&quot;Tobii.EyeX.Client.dll could not be loaded&quot;</a></li><li><a href="#system-io-file-does-not-contain-a-definition-for-readalltext">&quot;System.IO.File does not contain a definition for ReadAllText&quot;</a></li><li><a href="#i-get-invalid-data">&quot;I get invalid data&quot;</a></li><li><a href="#my-gaze-aware-objects-are-not-reacting-to-eye-gaze">&quot;My Gaze Aware objects are not reacting to eye-gaze&quot;</a></li><li><a href="#the-gaze-points-are-offset-to-the-upper-left">&quot;The gaze points are offset to the upper-left&quot;</a></li><li><a href="#none-of-the-above-describes-the-issue-i-have">None of the above describes the issue I have</a></li></ul>
+</li><li><a href="#appendix-a-unity-editor-howto-s">Appendix A - Unity Editor Howto&#39;s</a><ul>
+<li><a href="#set-windows-as-target-platform">Set Windows as Target Platform</a></li><li><a href="#import-the-tobii-eyetracking-sdk-unitypackage">Import the Tobii EyeTracking SDK unitypackage</a></li></ul>
+</li></ul>
+<p><div id="system-requirements"/></p>
+<h2 id="system-requirements">System Requirements</h2>
+<p>Version 2.0 of the Tobii EyeTracking SDK for Unity requires the following setup on your computer:</p>
+<ul>
+<li>Unity 5.4, 5.3 or 5.2</li><li>Windows 10, 8.1, or 7</li><li>Microsoft VC Redistributable 2012, 32 and 64 bit (can be downloaded from Microsoft, and is included in Visual Studio 2012)</li><li>Tobii Engine runtime (included in the install bundle for the eye tracker, or pre-installed on integrated systems)</li><li>Tobii consumer eye tracker peripheral or built-in device (check out integrated solutions from Acer, Alienware, and MSI, or the peripheral from Steelseries on their respective webpages, or <a href="http://www.tobii.com/xperience/products/">Tobii&#39;s own peripheral (http://www.tobii.com/xperience/products/)</a>) </li></ul>
+<p>The code samples in the SDK are written in C#. It is also possible to write your scripts in UnityScript, if you prefer.</p>
+<p>For download links and more information about other Tobii SDK&#39;s visit the  <a href="http://developer.tobii.com">Tobii Developer Zone (http://developer.tobii.com)</a>.</p>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="getting-started-explore-the-provided-demo-scenes"/></p>
+<h2 id="getting-started-explore-the-provided-demo-scenes">Getting Started - Explore the Provided Demo Scenes</h2>
+<p>Follow these steps to get started exploring the demo scenes included in the SDK.</p>
+<h3 id="step-1-install-and-make-sure-your-eye-tracker-is-working">Step 1: Install and make sure your eye tracker is working</h3>
+<p>(For non-integrated eye trackers only)<br>Follow the instructions included with your eye tracker to download and install the correct Tobii Engine runtime software. Make sure the eye tracker and software is working correctly.</p>
+<h3 id="step-2-download-the-tobii-eyetracking-sdk-for-unity">Step 2: Download the Tobii EyeTracking SDK for Unity</h3>
+<p>If you haven&#39;t already done so, download the Tobii EyeTracking SDK for Unity from <a href="http://developer.tobii.com">Tobii Developer Zone (http://developer.tobii.com)</a>. You need to be logged in to access the Downloads page. You can create an account for free, it only takes a couple of minutes.</p>
+<h3 id="step-3-import-the-tobii-eyetracking-assets-to-a-new-unity-project">Step 3: Import the Tobii EyeTracking Assets to a New Unity Project</h3>
+<p>Save the Tobii EyeTracking SDK for Unity zip file in an easy to remember place on disk. Extract the SDK zip and open the folder. In the root you will find a unitypackage which includes all the Tobii EyeTracking SDK assets and demo scenes. </p>
+<p>Open Unity, and create a New Unity Project. <a href="#set-windows-as-target-platform">Select Windows as Target Platform</a>.</p>
+<p><a href="#import-the-tobii-sdk-unitypackage">Import all assets from the Tobii EyeTracking SDK unitypackage</a></p>
+<h3 id="step-4-get-to-know-the-api-and-the-eye-gaze-data">Step 4: Get to know the API and the eye-gaze data</h3>
+<p>Locate the <code>Tobii</code> folder in the Unity Editor Project panel. Expand it and find the <code>DemoScenes</code> folder. </p>
+<p>Add the demo scenes to the build using the custom <code>Tools</code> menu (included in the DemoScenes folder):<br><code>Tools</code> &rarr; <code>Add Tobii SDK Demo Scenes to Build</code></p>
+<p>Open the <code>01_EyeTrackingData</code> scene and go through the three provided demo scenes to get an overview of the core features of the <a href="#tobii-eyetracking-framework-for-unity">Tobii EyeTracking Framework for Unity</a>.</p>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="intergrating-tobii-eyetracking-with-your-game"/></p>
+<h2 id="integrating-tobii-eyetracking-with-your-game">Integrating Tobii EyeTracking With Your Game</h2>
+<p>When you have explored the core features of the SDK, it is time to try it out in your game. If at any point things don&#39;t work as expected, check out the <a href="#troubleshooting">Troubleshooting</a> section.</p>
+<p><div id="import-the-tobii-eyetracking-assets"/></p>
+<h3 id="import-the-tobii-eyetracking-assets">Import the Tobii EyeTracking Assets</h3>
+<p>Make sure Windows is the selected Target Platform in the build settings. Import the Tobii EyeTracking SDK for Unity unitypackage to your game (the <code>DemoScenes</code> folder is optional). </p>
+<p><div id="implement-features-using-the-tobii-eyetracking-static-api"/></p>
+<h3 id="implement-features-using-the-tobii-eyetracking-static-api">Implement features using the Tobii EyeTracking static API</h3>
+<p>To start using the Tobii EyeTracking API, add <code>using Tobii.EyeTracking;</code> to a script, type <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking"><code>EyeTracking.</code></a> and browse the static functions of the API. You might also want to explore the possibilities of the the built-in object selection using eye-gaze by adding the Gaze Aware component to some of your game objects. The following sections give some hints what to explore.</p>
+<p><div id="configure-gaze-aware-layers"/></p>
+<h4 id="configure-gaze-focus-layers">Configure Gaze Focus layers</h4>
+<p>If you want to use the SDK&#39;s built-in object selection using eye-gaze, you need to set up your environment for Gaze Focus detection.</p>
+<p>Open the Eye Tracking Settings window from the Edit menu:<br><code>Edit</code> &rarr; <code>Eye Tracking Settings...</code></p>
+<p>Click to open the Gaze Focus Layers multi-selection dropdown and make sure that all the layers are selected where you want Gaze Aware game objects to be focused using eye-gaze. Also make sure that layers you do not want to track with eye-gaze are not selected (like transparent layers).</p>
+<p><div id="make-game-objects-gaze-aware"/></p>
+<h4 id="make-game-objects-gaze-aware">Make game objects Gaze Aware</h4>
+<p>You can make a game object Gaze Aware by adding the Gaze Aware component:<br><code>Add Component</code> &rarr; <code>Eye Tracking</code> &rarr; <code>Gaze Aware</code>. </p>
+<p>Read the <code>HasGazeFocus</code> property in the Update loop of a Gaze Aware game object and have it react to the user&#39;s eye-gaze by changing its behavior or appearance. Or, let your underlying game algorithms query which game object the user is looking at using <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-getfocusedobject"><code>EyeTracking.GetFocusedObject()</code></a>, and have the game respond to the user&#39;s eye-gaze in some other way.</p>
+<p>Note that Gaze Aware objects might not be a good fit for your particular game genre, game mechanics, or size and amount of game objects. But don&#39;t despair, there are still a lot to explore using the eye-gaze data directly.</p>
+<p><div id="use-the-gaze-point-data"/></p>
+<h4 id="use-gaze-point-data">Use Gaze Point data</h4>
+<p>Get the latest Gaze Point by calling <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a>. This data can be used to implement one or more of the following eye-gaze interaction features in your game, for example:</p>
+<ul>
+<li>Extended View (pans the camera a little when you look at the edges of the screen)</li><li>Infinite Screen (pans the camera continuously when you look towards the edges of the screen)</li><li>Clean UI (make UI elements semi-transparent if you don&#39;t look at them)</li><li>Aim@Gaze (aim your gun at the gaze point when you press an aim button)</li></ul>
+<p>In the Tobii Gaming Team, we have implemented and helped implement these features in a number of games (from triple A titles to indie games) and have made a number of iterations of improvements to the algorithms. </p>
+<p>For your convenience, we have put together a separate package of Tobii Interaction Samples for Unity that will soon be made available, where the features can be explored in full implementation in 3D scenes from first and third person perspectives. These interaction sample scenes give you an opportunity to evaluate how well you think the different interaction features might work in your game.</p>
+<p><div id="dive-into-more-advanced-features"/></p>
+<h4 id="dive-into-more-advanced-features">Dive into more advanced features</h4>
+<p>You can read more about the API functions and features in the section <a href="#tobii-eyetracking-framework-for-unity">Tobii EyeTracking Framework for Unity</a>, where you also find information on how to make use of advanced features of the API.</p>
+<p><div id="build-for-standalone"/></p>
+<h3 id="build-for-standalone">Build for Standalone</h3>
+<p>The Tobii EyeTracking assets include an editor script for copying the correct plugin dll&#39;s to the build output folder. The EyeTracking features are currently only available for PC (Windows 10/8.1/7), but the framework compiles on Mac and Linux as well (without copying the dll&#39;s).</p>
+<p>In addition to the Tobii client dll&#39;s included in the asset package, you need to make sure the Visual C++ Redistributable Package for Visual Studio 2012 (v110) is included in your game build, both the x86 and the x86_64 redists, since the Tobii client dll&#39;s depend on these redists. You can download an installer from Microsoft (linked page does not work well with Chrome, use another web browser): <a href="https://www.microsoft.com/en-us/download/details.aspx?id=30679">Visual C++ Redistributable for Visual Studio 2012</a> </p>
+<p><div id="tobii-eyetracking-framework-for-unity"/></p>
+<h2 id="tobii-eyetracking-framework-for-unity">Tobii EyeTracking Framework for Unity</h2>
+<p>It might be tempting to skip this part of the documentation, but I promise you that it will save you time later to at least browse through it. </p>
+<p>This section gives an overview of the eye tracking features available in the Tobii EyeTracking Framework for Unity. It introduces the core concepts and gives you insight into what tools and features the SDK has to offer you, and how they work.</p>
+<p>For API details on each class and function, see the Tobii EyeTracking for Unity <a href="./tobii-eyetracking-for-unity-scripting-reference.html">Scripting Reference</a>.</p>
+<p><div id="gazepoint-data"/></p>
+<h3 id="-gazepoint-data"><code>GazePoint</code> data</h3>
+<p>In the Tobii EyeTracking Framework a <a href="./tobii-eyetracking-for-unity-scripting-reference.html#gazepoint"><code>GazePoint</code></a> is the data type representing the point on the screen where the user is looking. More technically it is the point on the screen where the eye tracker has calculated that a line along the user&#39;s eye-gaze intersects with the screen plane. </p>
+<p>The <code>GazePoint.Screen</code> property returns a <code>Vector2</code> coordinate in Unity <code>Screen</code> space. This might seem pretty much like getting a mouse pointer coordinate, but please do not make the mistake of using this point out-of-the-box as you would use a mouse pointer coordinate. Eye tracking data is not as precise as mouse pointer data - it is actually physically impossible due to how our eyes and seeing works. Instead, think of a series of <a href="./tobii-eyetracking-for-unity-scripting-reference.html#gazepoint"><code>GazePoint</code></a>s as representing an area where the user is looking, and take into account that the accuracy and precision of the data varies from user to user.</p>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="eyetracking-static-api"/></p>
+<h3 id="-eyetracking-static-api"><code>EyeTracking</code> static API</h3>
+<p>The recommended starting point for accessing gaze point data from the Tobii EyeTracking Framework is to use the static functions on the static class <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking"><code>EyeTracking</code></a>. Just include the line <code>using Tobii.EyeTracking;</code> in a script and you will have access to the static API functions.</p>
+<p>Here are some examples of static methods on the class:</p>
+<ul>
+<li><a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a></li><li><a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-getfocusedobject"><code>EyeTracking.GetFocusedObject()</code></a></li><li><a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-getuserpresence"><code>EyeTracking.GetUserPresence()</code></a></li></ul>
+<p>You can read more about focused object and user presence in the sections below.</p>
+<p><div id="invalid-data-due-to-lazy-initialization"/></p>
+<h4 id="invalid-data-due-to-lazy-initialization">Invalid data due to lazy initialization</h4>
+<p>The EyeTracking static API is implemented using so called &#39;lazy initialization&#39;. This means that the API is not initialized until the first call to any of its functions. Because of this, the first time the functions are called they will return values that are invalid (<code>IsValid</code> is <code>false</code>). Depending on how many game loops it takes to initialize the underlying framework, there will be a number of frames where invalid data is returned.</p>
+<p>The static API can be explicitly initialized using <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-initialize"><code>EyeTracking.Initialize()</code></a>. This way the initialization period of invalid data can be moved to for example the startup sequence of the game instead of at the first request of data.</p>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="gaze-focus-and-the-gaze-aware-component"/></p>
+<h3 id="gaze-focus-and-the-gazeaware-component">Gaze Focus and the <code>GazeAware</code> component</h3>
+<p>The Tobii EyeTracking Framework has built-in support for mapping eye-gaze data to game-objects. We call this feature Gaze Focus. Rather than just mapping every gaze point to a game-object the idea is that an object that has Gaze Focus is intentionally focused by the user. To do this, we are under the hood using algorithms that take series of gaze points, the history of focused objects and timings in human perception into account. The 2.0 version of the SDK uses a first version of these algorithms, and the plan is that we will refine the algorithms continually in future versions of the framework. The goal is to have a fast and robust calculation that works for different eye tracker models with different characteristics in accuracy and precision, but also over a broad set of different eye-gaze characteristics of end-users.</p>
+<p>The Gaze Focus system only maps game objects that are <a href="./tobii-eyetracking-for-unity-scripting-reference.html#igazefocusable"><code>IGazeFocusable</code></a>. The easiest way to make a game object gaze focusable is to add the <a href="./tobii-eyetracking-for-unity-scripting-reference.html#gazeaware"><code>GazeAware</code></a> component to it. This component will register the game object at <code>OnEnable</code> and unregister it at <code>OnDisable</code>. In the game object&#39;s <code>Update</code> loop the <a href="./tobii-eyetracking-for-unity-scripting-reference.html#gazeaware"><code>GazeAware</code></a> component&#39;s <code>HasGazeFocus</code> property can be read to know if the game object is focused or not.</p>
+<p>For game algorithms outside of the individual game objects, it is also possible to ask the gaze focus handler which object is currently focused using the static API function <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-getfocusedobject"><code>EyeTracking.GetFocusedObject()</code></a>, and have the game respond to this information. Only one object (or no object) is considered to have gaze focus at the time.</p>
+<p>As a developer you should use Gaze Focus as it is out-of-the-box, since any additional filtering done on top of the gaze focus calculation might be a bad fit when the algorithms change in a future release. Highlighting of objects and visualisations should use timings related to human perception rather than be adapted to a specific gaze focus algorithm, eye tracker model or a specific user&#39;s characteristic gaze-tracking.</p>
+<p>Gaze Focus is only available for 3D and 2D game objects. It does not work with UI elements.</p>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="user-presence-and-gaze-tracking-states"/></p>
+<h3 id="user-presence-and-gaze-tracking-states">User Presence and Gaze Tracking states</h3>
+<p>The <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking"><code>EyeTracking</code></a> static API gives direct access to two states (or statuses): User Presence and Gaze Tracking.</p>
+<p>User Presence is a state that indicates if a user is present in front of the eye tracked screen or not. This state can be used to for example pause some feature if there is no user present.</p>
+<p>Gaze Tracking is a state that indicates whether the user&#39;s eye-gaze is currently tracked, in other words if the eye tracker is currently able to calculate the point on the screen where the user is looking. </p>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="advanced-api-features"/></p>
+<h3 id="advanced-api-features">Advanced API features</h3>
+<p>This section gives an overview of some more advanced API features. While the EyeTracking static API uses basic data types and basic C# language structures, some of these more advanced API:s use C# language structures that are more familiar for experienced C# developers (like generics <code>SomeClass&lt;T&gt;</code> and using <code>IEnumerable</code> instead of arrays).</p>
+<p><div id="custom-gaze-aware-component"/></p>
+<h4 id="custom-gaze-aware-component">Custom Gaze Aware component</h4>
+<p>If you for some reason do not want to, or cannot use the supplied Gaze Aware component to make your game objects gaze focusable, it is also possible to create your own custom Gaze Aware component by implementing the <a href="./tobii-eyetracking-for-unity-scripting-reference.html#igazefocusable"><code>IGazeFocusable</code></a> interface. Just make sure to call the register and unregister focusable object functions on the gaze focus handler at appropriate times. See the <a href="./tobii-eyetracking-for-unity-scripting-reference.html#gazeaware"><code>GazeAware</code></a> class implementation for details.</p>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="data-provider"/></p>
+<h4 id="data-provider">Data Provider</h4>
+<p>When you have gotten comfortable using gaze point data you might realise that the <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a> is too rudimentary for some of the things you want to implement. If you need better control over the gaze point data you can use an <a href="./tobii-eyetracking-for-unity-scripting-reference.html#idataprovider"><code>IDataProvider</code></a> instead of the static API.</p>
+<p>The following code example gives you an overview how to use a data provider and what data is offered. More information on each function is available in the Tobii EyeTracking Framework for Unity <a href="./tobii-eyetracking-for-unity-scripting-reference.html">Scripting Reference</a>.</p>
+<pre><code class="lang-csharp">
+using Tobii.EyeTracking;
+using System.Collections.Generic;
+...
+
+public class ExampleClass : MonoBehaviour
+{
+    private IDataProvider&lt;GazePoint&gt; _gazePointProvider;
+    private ITimestamped _lastHandledPoint;
+
+    OnStart()
+    {
+        _gazePointProvider = EyeTrackingHost.GetInstance().GetGazePointDataProvider();
+    }
+
+    OnEnable()
+    {
+        _gazePointProvider.Start(gameObject.GetInstanceID());
+    }
+
+    OnDisable()
+    {
+        _gazePointProvider.Stop(gameObject.GetInstanceID());
+    }
+
+    Update()
+    {
+        GazePoint last = _gazePointProvider.Last; // the last data point received from the eye tracker
+        GazePoint frameConsistent = _gazePointProvider.GetFrameConsistentDataPoint() // same as EyeTracking.GetGazePoint()
+        // use last and frameConsistent data points
+        ...
+
+        IEnumerable&lt;GazePoint&gt; pointsSinceLastHandled = _gazePointProvider.GetDataPointsSince(_lastHandledPoint);
+        foreach (point in pointsSinceLastHandled)
+        {
+            //handle each point that has arrived since previous Update()
+        }
+        _lastHandledPoint = pointsSinceLastHandled.Last();
+    }
+}
+</code></pre>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="system-configuration-and-states"/></p>
+<h4 id="system-configuration-and-states">System Configuration and States</h4>
+<p>The <a href="./tobii-eyetracking-for-unity-scripting-reference.html#ieyetrackinghost"><code>IEyeTrackingHost</code></a> interface provides a number of additional features not available in the EyeTracking static API. This section highlights a couple of these features.</p>
+<p>To access features on the <a href="./tobii-eyetracking-for-unity-scripting-reference.html#ieyetrackinghost"><code>IEyeTrackingHost</code></a> you should always use <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetrackinghost-getinstance"><code>EyeTrackingHost.GetInstance()</code></a>. This method returns different implementations of <a href="./tobii-eyetracking-for-unity-scripting-reference.html#ieyetrackinghost"><code>IEyeTrackingHost</code></a> depending on from where in the application life cycle the method is called, making sure we have consistent behavior and that no memory is leaked during application shutdown.  </p>
+<ul>
+<li><a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetrackinghost-getengineavailability"><code>EyeTrackingHost.GetEngineAvailability()</code></a> Use this method to check if there is a Tobii Engine runtime available or not. Useful query for games that build standalone for Linux and Mac, to block or not use Tobii EyeTracking features on these platforms.</li><li><a href="./tobii-eyetracking-for-unity-scripting-reference.html#ieyetrackinghost-eyetrackingdevicestatus"><code>IEyeTrackingHost.EyeTrackingDeviceStatus</code></a> If this property returns a status of <a href="./tobii-eyetracking-for-unity-scripting-reference.html#devicestatus"><code>DeviceStatus.Tracking</code></a> it means that the eye tracker is connected, up and running and trying to track the user&#39;s eyes. Any other status means that no eye tracking data can be expected - the eye tracker could for example not be connected, be initializing, or disabled by the user. Note that this status will always return an invalid value the first time it is called. A valid value will be returned within some frames after that first call.</li></ul>
+<p>For more information on the available functions and properties of the <a href="./tobii-eyetracking-for-unity-scripting-reference.html#ieyetrackinghost"><code>IEyeTrackingHost</code></a> see the Tobii EyeTracking Framework for Unity scripting reference.</p>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+<p><div id="troubleshooting"/></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If things are not working as you expected, please check out the following small troubleshooting guides. </p>
+<p><div id="tobii-eyex-client-dll-could-not-be-loaded"/></p>
+<h3 id="-tobii-eyex-client-dll-could-not-be-loaded-">&quot;Tobii.EyeX.Client.dll could not be loaded&quot;</h3>
+<p>Here are some things to try. Please try them in order:</p>
+<ol>
+<li>Make sure your build setting is for Standalone PC (Windows x86 or x86_64)</li><li>Make sure you have Microsoft&#39;s VC Redist 2012 installed on your computer. The redist is included in Visual Studio 2012, but you can also download a separate installer from Microsoft: <a href="https://www.microsoft.com/en-us/download/details.aspx?id=30679">Visual C++ Redistributable for Visual Studio 2012</a>.</li><li>Check the bitness for Windows selected in the build settings (x86 or x86_64), go to File Explorer in Windows and manually copy the <code>Tobii.EyeX.Client.dll</code> from the corresponding <code>Assets/Tobii/Plugins/x86</code> or <code>../x86_64</code> folder to the game project&#39;s root folder.</li></ol>
+<p><div id="system-io-file-does-not-contain-a-definition-for-readalltext"/></p>
+<h3 id="-system-io-file-does-not-contain-a-definition-for-readalltext-">&quot;System.IO.File does not contain a definition for ReadAllText&quot;</h3>
+<p>Check your build settings and make sure Platform is set to &quot;PC, Mac &amp; Linux Standalone&quot;.</p>
+<p>The Tobii EyeTracking SDK for Unity only provides gaze-data on Windows 10/8.1/7, and only builds without errors for standalone platforms (Windows, Mac and Linux). </p>
+<p><div id="i-get-invalid-data"/></p>
+<h3 id="-i-get-invalid-data-">&quot;I get invalid data&quot;</h3>
+<p>Getting <strong>invalid eye-gaze data is expected</strong> in the following situations:</p>
+<ul>
+<li>during game startup, </li><li>at the first call for a value (for example first call to <a href="./tobii-eyetracking-for-unity-scripting-reference.html#eyetracking-getgazepoint"><code>EyeTracking.GetGazePoint()</code></a>),</li><li>for a few frames following the first call to a value function,</li><li>during game shutdown,</li><li>on unsupported platforms (like Mac and Linux)</li><li>when the Tobii EyeTracking Framework is not getting any data from the eye tracker:<ul>
+<li>when the eye tracker is not setup for the monitor it is attached to (check the Display Setup in the Tobii taskbar popup menu)</li><li>when the Tobii Engine is Disabled or not running, not configured, or Initializing (you might want to stop and restart the Tobii Engine application - select Quit in the task bar context menu and then type &quot;EyeX&quot; in the Start menu, select the installed engine runtime application to open and restart it)</li><li>when you are not looking at the screen</li><li>when your eyes are outside the so called track-box in front of the eye tracker (try moving your head closer/further away, vertically or horizontally until the eye tracker can track your eyes)</li></ul>
+</li></ul>
+<p>You have to take these expected cases of invalid gaze data into account in your game implementation.</p>
+<p><div id="my-gaze-aware-objects-are-not-reacting-to-eye-gaze"/></p>
+<h3 id="-my-gaze-aware-objects-are-not-reacting-to-eye-gaze-">&quot;My Gaze Aware objects are not reacting to eye-gaze&quot;</h3>
+<p>First of all, the Gaze Aware component only works with 3D and 2D game objects with a Collider. If you have attached the component to a UI element on a Canvas, it will not work. If you have attached the Gaze Aware component to a 3D and/or 2D game objects that has a Collider but it doesn&#39;t work, keep on reading.</p>
+<p>The Gaze Focus algorithms only work when the Tobii EyeTracking Framework has access to valid Gaze Point data. See the previous section for situations when the Gaze Aware objects are not expected to react to eye-gaze (because there is no valid Gaze Point data available).</p>
+<p>If none of the above situations apply, open the Eye Tracking Settings window:<br><code>Edit</code> &rarr; <code>Eye Tracking Settings...</code><br>Verify that the proper layers are selected in the Gaze Focus Layers multi-selection dropdown. Only the selected layers will be considered in the Gaze Focus algorithms that calculate which Gaze Aware game object the user is looking at.</p>
+<p><div id="the-gaze-points-are-offset-to-the-upper-left"/></p>
+<h3 id="-the-gaze-points-are-offset-to-the-upper-left-">&quot;The gaze points are offset to the upper-left&quot;</h3>
+<p>If the gaze points are offset to the upper-left when running the game in the Unity Editor, and the offset increases the closer to the lower-right corner of your screen you are looking, then you probably have a DPI-problem. On Windows 10 this offset problem is more common since the screen DPI is automatically set to higher values for high-resolution monitors. There are two possible workarounds:</p>
+<ul>
+<li>Set the DPI scale for your monitor manually to a value of 125% or lower, or</li><li>Build a standalone build and test the eye-tracking related features there</li></ul>
+<h4 id="further-explanation-of-the-dpi-problem">Further explanation of the DPI problem</h4>
+<p>The Unity Editor application is not DPI-aware, which means that Windows automatically scales the Unity Editor window if the screen DPI is set to a scale higher than 125%, and draws the window bigger on the screen without letting the Unity Editor know anything about this. This causes problems for us when we are trying to map a physical point in space where the user is looking, to a logical pixel on the virtual screen - because the values returned by Windows when we try to convert between physical and logical pixels do not return the coordinates where the pixels are actually drawn but where they would have been drawn if the application window had been drawn in its original 100% size. (This is so the application&#39;s internal logic will work, and mouse click coordinates and so on correspond to where the application believes it has drawn its UI elements). Unfortunately there is no API to ask Windows where it actually draws each pixel of the client application, so until Windows would provide such an API or Unity rewrites the Unity Editor to be DPI aware we are unfortunately stuck with the workarounds suggested above.</p>
+<p><div id="none-of-the-above-describes-the-issue-i-have"/></p>
+<h3 id="none-of-the-above-describes-the-issue-i-have">None of the above describes the issue I have</h3>
+<p>If you cannot find the answer to your problems here, please check out our  <a href="developer.tobii.com/community-forums/">Developer Forums (developer.tobii.com/community-forums/)</a>. Use the Forums&#39; Search function to find existing answers, or post a new topic if your question has not been posted before.</p>
+<h2 id="appendix-a-unity-editor-howto-s">Appendix A - Unity Editor Howto&#39;s</h2>
+<p><div id="set-windows-as-target-platform" /></p>
+<h3 id="set-windows-as-target-platform">Set Windows as Target Platform</h3>
+<p><code>Edit</code> &rarr; <code>Build Settings...</code></p>
+<ul>
+<li>Platform: <code>PC, Mac &amp; Linux Standalone</code></li><li>Platform Target: <code>Windows</code></li><li>Architecture: <code>x86</code> or <code>x86_64</code></li></ul>
+<p><div id="import-the-tobii-sdk-unitypackage" /></p>
+<h3 id="import-the-tobii-eyetracking-sdk-unitypackage">Import the Tobii EyeTracking SDK unitypackage</h3>
+<p><code>Assets</code> &rarr; <code>Import Assets</code> &rarr; <code>Custom package...</code></p>
+<ul>
+<li>Browse to the root folder of the Tobii EyeTracking SDK package you have downloaded and extracted to disk</li><li>Select the Tobii EyeTracking SDK unitypackage</li><li>Import all assets in the package</li></ul>
+<p><a href="#top-eyetracking-unity-manual">&uarr; Back to Top</a></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
