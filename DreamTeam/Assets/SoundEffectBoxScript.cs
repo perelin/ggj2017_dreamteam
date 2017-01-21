@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundEffectBoxScript : MonoBehaviour {
 
-	public AudioClip clip;
+	public SoundList list;
 	public float deltaTime;
 
 
@@ -13,11 +13,15 @@ public class SoundEffectBoxScript : MonoBehaviour {
 	private bool playEffect = false;
 
 	void OnTriggerEnter(Collider other) {
-		playEffect = true;
+		if (other.name.Equals("Player")) {
+			playEffect = true;
+		}
 	}
 
 	void OnTriggerExit(Collider other) {
-		playEffect = false;
+		if (other.name.Equals ("Player")) {
+			playEffect = false;
+		}
 	}
 
 	void Update() {
@@ -25,7 +29,7 @@ public class SoundEffectBoxScript : MonoBehaviour {
 			currentDeltaTimeCounter += Time.deltaTime;
 			if (currentDeltaTimeCounter > deltaTime) {
 				currentDeltaTimeCounter = 0;
-				SoundSystem.instance.PlaySingle (clip);
+				list.Play ();
 			}
 		}
 	}
