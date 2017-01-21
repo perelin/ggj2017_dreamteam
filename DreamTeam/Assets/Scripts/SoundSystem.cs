@@ -4,6 +4,7 @@ using System.Collections;
     public class SoundSystem : MonoBehaviour 
     {
         public AudioSource efxSource;                   //Drag a reference to the audio source which will play the sound effects.
+	public AudioSource noiseSource;
         public AudioSource[] musicSource;                 //Drag a reference to the audio source which will play the music.
         public static SoundSystem instance = null;     //Allows other scripts to call functions from SoundManager.             
         public float lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
@@ -17,6 +18,21 @@ using System.Collections;
 	private int currentMusicId = 0;
 	private bool inTransition = false;
 	private float transtitionStartTime;
+
+	// random environment sounds
+	public AudioClip[] noisesList;
+	public float minNoiseInterval = 0.5f;
+	public float maxNoiseInterval = 5f;
+
+	private float nextNoiseTime = 0f;
+
+	void playRandomNoise() {
+	    if (noisesList.Length > 0 && Time.time > nextNoiseTime) {
+		nextNoiseTime = Time.time + Random.Range(minNoiseInterval, maxNoiseInterval);
+		noiseSource.clip = noisesList[Random.Range(0, noisesList.Length)];
+		noiseSource.Play();		
+	    }
+	}
         
         void Awake ()
         {
@@ -72,6 +88,9 @@ using System.Collections;
 		}
 	    }
 
+	    playRandomNoise();
+
+
 	    // for debugging purposes only
 	    if (Input.GetKey(KeyCode.Alpha1)) {
 		ChangeMusic(0);
@@ -81,6 +100,9 @@ using System.Collections;
 	    }
 	    if (Input.GetKey(KeyCode.Alpha3)) {
 		ChangeMusic(2);
+	    }
+	    if (Input.GetKey(KeyCode.Alpha4)) {
+		ChangeMusic(3);
 	    }
 	}
         

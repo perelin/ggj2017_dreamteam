@@ -15,54 +15,49 @@ public class LookPathScript : MonoBehaviour
 
     public BezierCurve FollowCurve;
 
-    private float currentProgress = 0;
+    private float currentProgress = 0f;
 
     public float speed = 4f;
 
+    private float progressPerTime;
+
+    public bool useGazeFocus = false;
+
     // Use this for initialization
     void Start ()
-	{
-        Assert.IsNotNull(gazeComponent);
+    {
+        progressPerTime = speed / FollowCurve.length;
         gazeComponent = InidiratorGameObject.GetComponent<GazeAware>();
-	}
+        Assert.IsNotNull(gazeComponent);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
-        /*GazePoint gazePoint = EyeTracking.GetGazePoint();
-        if (gazePoint.IsValid)
-        {
-            print("Gaze point on Screen (X,Y): " + gazePoint.Screen.x + ", " + gazePoint.Screen.y);
-            var point = new Vector3(gazePoint.Screen.x, gazePoint.Screen.y);
-            var objectPos = Camera.main.ScreenToWorldPoint(point);
-
-            var oldZ = InidiratorGameObject.gameObject.transform.position.z;
-
-            InidiratorGameObject.gameObject.transform.position = new Vector3(objectPos.x, objectPos.y, oldZ);
-
-        }*/
-
-        GameObject focusedObject = EyeTracking.GetFocusedObject();
-        if (null != focusedObject)
-        {
-            print("The focused game object is: " + focusedObject.name + " (ID: " + focusedObject.GetInstanceID() + ")");
-        }
-
-
-
-        if (gazeComponent.HasGazeFocus)
+	    if (useGazeFocus)
 	    {
-            Debug.Log("Has Focus");
-	        currentProgress += speed * Time.deltaTime;
+	        if (gazeComponent.HasGazeFocus)
+	        {
+	            currentProgress = Mathf.Min(currentProgress + speed * Time.deltaTime, 1f);
+	        }
 	    }
-        
-        /*
+	    else
+	    {
+	        GazePoint gazePoint = EyeTracking.GetGazePoint();
+	        if (gazePoint.IsValid)
+	        {
+                var ray = Camera.main.ScreenPointToRay(gazePoint.Screen);
+                var hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-	    EyeTracking.GetFocusedObject();
+                // if collision: increment timer
+	            if (hit.collider != null && hit.collider.gameObject == this.InidiratorGameObject)
+	            {
+                    Debug.Log("hit");
+                    currentProgress = Mathf.Min(currentProgress + speed * Time.deltaTime, 1f);
+                }
+	        }
+	    }
 
-        Vector3 nextPos = FollowCurve.GetPointAt(currentProgress);
+	    Vector3 nextPos = FollowCurve.GetPointAt(currentProgress);
         InidiratorGameObject.gameObject.transform.position = nextPos;
-
-        */
     }
 }
