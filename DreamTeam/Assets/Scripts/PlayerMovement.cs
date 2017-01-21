@@ -6,18 +6,32 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float speed = 8f;
 
-	public BezierCurve[] curves;
+	//public BezierCurve[] C;
 
 	public bool enableControls;
 
 	private int currentCurve = 0;
 	private float currentProgress = 0;
 
+    public LevelSection[] Sections;
+    private int currentSectionId = 0;
 
+    private BezierCurve[] curves {
+        get {
+            return Sections[currentSectionId].Curves;
+        }    
+    }
+    private BezierCurve curve
+    {
+        get
+        {
+            return curves[currentCurve];
+        }
+    }
 
-	private float progressPerTime {
+    private float progressPerTime {
 		get {
-			return (speed / curves[currentCurve].length);
+			return (speed / curve.length);
 		}
 	}
 
@@ -42,30 +56,49 @@ public class PlayerMovement : MonoBehaviour {
 
 			// if player reached end of currentCurve
 			if (currentProgress >= 1) {
-
-				// go to next Curve and reset progress
-				currentCurve++;
-				currentProgress = 0;
-
-				// if there is no curve left
-				if (currentCurve >= curves.Length) {
-					PlayerWin ();
-					currentCurve = curves.Length - 1;
-					currentProgress = 1;
-				}
+                NextCurve();
 			}
 		}
 
 		// apply new position to player
-		Vector3 nextPos = curves[currentCurve].GetPointAt (currentProgress);
+		Vector3 nextPos = curve.GetPointAt (currentProgress);
 		this.gameObject.transform.position = nextPos;
 		float scale = 2 - 3 * nextPos.z / 20;
 		this.gameObject.transform.localScale = new Vector3 (scale, scale, scale);
 	}
 
+    void NextCurve()
+    {
+        // go to next Curve and reset progress
+        currentCurve++;
+        currentProgress = 0;
+
+        // if there is no curve left
+        if (currentCurve >= curves.Length)
+        {
+            NextLevelSection();
+        }
+    }
 
 
-	void PlayerWin() {
+    void NextLevelSection()
+    {
+        // go to next LevelSection and reset progress
+        currentSectionId++;
+        currentCurve = 0;
+
+        // if there is no LevelSection left
+        if (currentSectionId >= Sections.Length)
+        {
+            currentSectionId = Sections.Length - 1;
+            currentProgress = 1;
+            PlayerWin();
+        }
+    }
+
+
+
+    void PlayerWin() {
 		// TODO do sth
 		Debug.Log("PlayerWin");
 	}
