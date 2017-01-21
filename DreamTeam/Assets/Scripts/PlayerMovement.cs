@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public BezierCurve[] curves;
 
+	public bool enableControls;
+
 	private int currentCurve = 0;
 	private float currentProgress = 0;
 
@@ -28,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 		
 	bool IsWalking() {
-		return Input.GetKey(KeyCode.Space);
+		return Input.GetKey(KeyCode.Space) && enableControls;
 	}
 
 	// Update is called once per frame
