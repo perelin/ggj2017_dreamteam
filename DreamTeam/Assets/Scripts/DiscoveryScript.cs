@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
+
 public class DiscoveryScript : MonoBehaviour {
 
 	// Determines how fast to count down up countdown
 	public float timeSubstractFactor = 1 / 2f;
-	public float timeToAction = 3f;
+	public float timeToAction = 2f;
 
 	public MonoBehaviour actionToPerform;
 
@@ -22,7 +24,7 @@ public class DiscoveryScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		ray = Camera.main.ScreenPointToRay(TrackingStuff.getTrackingPos());
 		hit = Physics2D.Raycast(ray.origin, ray.direction);
 
 		// if collision: increment timer
@@ -45,15 +47,7 @@ public class DiscoveryScript : MonoBehaviour {
 		}
 	}
 
-
 	public void DoAction() {
-		actionToPerform.SendMessage ("PerformAction");
+		actionToPerform.SendMessage("PerformAction");
 	}
-
-	public void PerformAction() {
-		Debug.Log ("BREERERER");
-	}
-		
-
-
 }

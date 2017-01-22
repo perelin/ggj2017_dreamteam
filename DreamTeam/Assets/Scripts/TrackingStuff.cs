@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Tobii.EyeTracking;
 
-class TrackingStuff : MonoBehaviour
+class TrackingStuff
 {
     public static bool UseEyeTracking = true;
 
