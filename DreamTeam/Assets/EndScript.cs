@@ -5,7 +5,7 @@ using UnityEngine;
 public class EndScript : MonoBehaviour {
 
 	void PerformAction() {
-
+		Application.Quit ();
 	}
 
 }
