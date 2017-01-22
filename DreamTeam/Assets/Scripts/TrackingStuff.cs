@@ -6,13 +6,19 @@ using Tobii.EyeTracking;
 
 class TrackingStuff
 {
-    public static bool UseEyeTracking = true;
+    private static bool UseEyeTracking = true;
 
+    // eye tracking is activated
     public static bool isEyeTracking()
     {
         var status = EyeTracking.GetGazeTrackingStatus().Status;
-        return UseEyeTracking && status != GazeTrackingStatus.NotSupported && status != GazeTrackingStatus.Unknown
-            && status != GazeTrackingStatus.GazeNotTracked;
+        return UseEyeTracking && status != GazeTrackingStatus.NotSupported && status != GazeTrackingStatus.Unknown;
+    }
+
+    public static bool areEyesClosed()
+    {
+        var status = EyeTracking.GetGazeTrackingStatus().Status;
+        return isEyeTracking() && status == GazeTrackingStatus.GazeNotTracked;
     }
 
     public static Vector2 getTrackingPos()
