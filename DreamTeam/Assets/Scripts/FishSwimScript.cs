@@ -19,7 +19,7 @@ public class FishSwimScript : MonoBehaviour {
 		float x = this.gameObject.transform.localPosition.x + FishSpeed * Time.deltaTime;
 		this.gameObject.transform.localPosition = new Vector3 (x, this.gameObject.transform.localPosition.y, this.gameObject.transform.localPosition.z);
 
-		Debug.Log (this.gameObject.transform.localPosition.x);
+		// Debug.Log (this.gameObject.transform.localPosition.x);
 
 
 		if (this.gameObject.transform.localPosition.x > FishMaxX) {
