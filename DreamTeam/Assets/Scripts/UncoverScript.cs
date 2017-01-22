@@ -13,7 +13,9 @@ public class UncoverScript : MonoBehaviour {
     {
         var go = new GameObject();
         go.transform.SetParent(this.transform, false);
-        go.layer = LayerMask.NameToLayer("Darkness");
+        go.transform.Translate(new Vector3(0, 0, -5));
+
+        go.layer = LayerMask.NameToLayer("Lights");
 
         var sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = this.GetComponent<SpriteRenderer>().sprite;
