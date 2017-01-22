@@ -32,7 +32,7 @@ public class CameraManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        _zoom = 6;
+        _zoom = 5;
 
         // flip the cameras for direct X ...
         /*  if (!(SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D11 ||
