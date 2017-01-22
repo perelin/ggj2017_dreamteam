@@ -24,7 +24,7 @@ public class LevelBackgroundScript : MonoBehaviour {
 
     void Update()
     {
-        float newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizeZ);
+        float newPosition = Mathf.Sin(Time.time * scrollSpeed) * tileSizeZ;//;Mathf.Repeat(Time.time * scrollSpeed, tileSizeZ);
         float newSin = Mathf.Sin(Time.time * wobbleSpeed) * wobbleAplitude;
         transform.position = startPosition + Vector3.left * newPosition + Vector3.up * newSin;
     }

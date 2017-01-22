@@ -16,8 +16,20 @@ public class IntroCloseEyes : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () { 
-		_animator.SetBool("EyesClosed", Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0));
+		_animator.SetBool("EyesClosed", AreEyesClosed());
 	}
+
+    bool AreEyesClosed()
+    {
+        if (TrackingStuff.isEyeTracking())
+        {
+            return TrackingStuff.areEyesClosed();
+        }
+        else
+        {
+            return Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0);
+        }
+    }
 
     void StartGame()
     {
