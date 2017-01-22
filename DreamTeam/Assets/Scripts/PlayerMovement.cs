@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public LevelSection[] Sections;
     private int currentSectionId = 0;
 
+	public SoundList soundList;
+
     private BezierCurve[] curves {
         get {
             return Sections[currentSectionId].Curves;
@@ -110,10 +112,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+	public void PlayStep() {
+		soundList.Play ();
+	}
 
     void PlayerWin() {
 		// TODO do sth
 		Debug.Log("PlayerWin");
 	}
+
 }
