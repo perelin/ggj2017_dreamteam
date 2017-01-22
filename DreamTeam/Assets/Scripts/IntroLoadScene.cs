@@ -8,6 +8,7 @@ public class IntroLoadScene : MonoBehaviour
 
     public InitialDiscoveryScript InitialScript;
     public PlayerMovement PlayerMovement;
+    public Animator Player;
     public MouseIlluminator MouseIlluminator;
 
     void Awake()
@@ -16,14 +17,15 @@ public class IntroLoadScene : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start ()
-	{
+    void Start()
+    {
 
         SceneManager.LoadScene("IntroScene", LoadSceneMode.Additive);
-	    InitialScript.enabled = false;
+        InitialScript.enabled = false;
         PlayerMovement.enableControls = false;
-	    MouseIlluminator.enabled = false;
-	}
+        MouseIlluminator.enabled = false;
+        Player.enabled = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,5 +36,6 @@ public class IntroLoadScene : MonoBehaviour
     {
         InitialScript.enabled = true;
         MouseIlluminator.enabled = true;
+        Player.enabled = true;
     }
 }

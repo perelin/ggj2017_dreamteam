@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         // apply new position to player
         Vector3 nextPos = curve.GetPointAt (currentProgress);
 		this.gameObject.transform.position = nextPos;
-		float scale = 2 - 3 * nextPos.z / 20;
+		float scale = 1.5f - 3 * nextPos.z / 20;
 		this.gameObject.transform.localScale = new Vector3 (scale, scale, scale);
 	}
 
