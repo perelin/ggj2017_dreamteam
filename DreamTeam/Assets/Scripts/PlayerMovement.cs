@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        currentProgress = Mathf.SmoothDamp(currentProgress, IsWalking() ? 1 : currentProgress, ref walkVelo, walkDamp, speed);
+        currentProgress = Mathf.SmoothDamp(currentProgress, IsWalking() ? 1.2f : currentProgress, ref walkVelo, walkDamp, speed);
         currentProgress = Mathf.Min(currentProgress, 1);
 
         // if player reached end of currentCurve
