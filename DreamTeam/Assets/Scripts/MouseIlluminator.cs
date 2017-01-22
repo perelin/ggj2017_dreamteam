@@ -13,8 +13,6 @@ public class MouseIlluminator : MonoBehaviour
     public float SpawnNewLightAfterSeconds = 0.1f;
     public Camera Camera;
 
-    public bool UseEyeTracker = true;
-
 	// Use this for initialization
 	void OnAwake () {
 		EyeTracking.Initialize();
@@ -29,23 +27,7 @@ public class MouseIlluminator : MonoBehaviour
 	        _count -= SpawnNewLightAfterSeconds;
 	        var light = Instantiate(LightPoint, Lights);
 
-	        Vector3 lookPos = Vector3.zero;
-
-	        if (isEyeTracking())
-	        {
-                // get eye tracking point
-                GazePoint gazePoint = EyeTracking.GetGazePoint();
-                if (gazePoint.IsValid)
-                {
-                    lookPos = new Vector3(gazePoint.Screen.x, gazePoint.Screen.y);
-                }
-            }
-            else
-	        {
-                // get mouse position as replacement for eye tracking
-	            lookPos = Input.mousePosition;
-	            
-	        }
+	        Vector3 lookPos = TrackingStuff.getTrackingPos();
 
             var objectPos = Camera.ScreenToWorldPoint(lookPos);
 
@@ -56,10 +38,5 @@ public class MouseIlluminator : MonoBehaviour
 
     }
 
-    private bool isEyeTracking()
-    {
-        var status = EyeTracking.GetGazeTrackingStatus().Status;
-        return UseEyeTracker && status != GazeTrackingStatus.NotSupported && status != GazeTrackingStatus.Unknown 
-            && status != GazeTrackingStatus.GazeNotTracked;
-    }
+    
 }
