@@ -5,13 +5,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	public float speed = 8f;
+    public float walkDamp = 2f;
+    //public float stopDamp = 1f;
+    public float walkVelo = 0;
 
 	//public BezierCurve[] C;
 
 	public bool enableControls;
 
 	private int currentCurve = 0;
-	private float currentProgress = 0;
+	public float currentProgress = 0;
 
     public LevelSection[] Sections;
     private int currentSectionId = 0;
@@ -50,18 +53,17 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// check if player wants to move forward
-		if (IsWalking ()) {
-			currentProgress += progressPerTime * Time.deltaTime;
+        currentProgress = Mathf.SmoothDamp(currentProgress, IsWalking() ? 1 : currentProgress, ref walkVelo, walkDamp, speed);
+        currentProgress = Mathf.Min(currentProgress, 1);
 
-			// if player reached end of currentCurve
-			if (currentProgress >= 1) {
-                NextCurve();
-			}
-		}
+        // if player reached end of currentCurve
+        if (currentProgress >= 1 - 0.001)
+        {
+            NextCurve();
+        }
 
-		// apply new position to player
-		Vector3 nextPos = curve.GetPointAt (currentProgress);
+        // apply new position to player
+        Vector3 nextPos = curve.GetPointAt (currentProgress);
 		this.gameObject.transform.position = nextPos;
 		float scale = 2 - 3 * nextPos.z / 20;
 		this.gameObject.transform.localScale = new Vector3 (scale, scale, scale);
