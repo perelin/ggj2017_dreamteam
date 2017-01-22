@@ -15,6 +15,7 @@ public class ChangeMoodColorDependingOnYPos : MonoBehaviour
 
     void InsideBoxUpdate()
     {
+		Debug.Log (calculateColor (Player.transform.position.y));
         MoodColor.color = calculateColor(Player.transform.position.y);
     }
 
@@ -22,12 +23,16 @@ public class ChangeMoodColorDependingOnYPos : MonoBehaviour
     {
         if (y < LowY)
         {
+			Debug.Log ("low");
             return LowColor;
         }
         if (y > HighY)
         {
+			Debug.Log ("high");
             return HighColor;
         }
+
+		Debug.Log ("calc");
         return Color.Lerp(LowColor, HighColor, (y - LowY) / (HighY - LowY));
 
     }
