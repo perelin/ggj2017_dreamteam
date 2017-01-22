@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishScript : MonoBehaviour {
+public class FishSwimScript : MonoBehaviour {
 
 	public float FishSpeed = 4f;
 	public float FishMinX = -14;
@@ -16,19 +16,22 @@ public class FishScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		float x = this.gameObject.transform.localPosition.x + FishSpeed * Time.deltaTime;
+		this.gameObject.transform.localPosition = new Vector3 (x, this.gameObject.transform.localPosition.y, this.gameObject.transform.localPosition.z);
 
-		this.gameObject.transform.Translate (new Vector3 (FishSpeed * Time.deltaTime, 0, 0));
+		Debug.Log (this.gameObject.transform.localPosition.x);
 
-		if (this.gameObject.transform.position.x > FishMaxX) {
-			this.gameObject.transform.position = new Vector3 (FishMinX, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+
+		if (this.gameObject.transform.localPosition.x > FishMaxX) {
+			this.gameObject.transform.localPosition = new Vector3 (FishMinX, this.gameObject.transform.localPosition.y, this.gameObject.transform.localPosition.z);
+			x = FishMinX;
 		}
 			
-		float x = this.gameObject.transform.position.x;
 		float y = FishY + FishAmplitude * Mathf.Sin (x * 2 * Mathf.PI / FishWavelength);
 
 		float dy = FishAmplitude * Mathf.Cos (x * 2 * Mathf.PI / FishWavelength);
 
-		this.gameObject.transform.position = new Vector3 (x, y, this.gameObject.transform.position.z);
+		this.gameObject.transform.localPosition = new Vector3 (x, y, this.gameObject.transform.localPosition.z);
 		this.gameObject.transform.eulerAngles = new Vector3 (0, 0, dy / FishAmplitude * 45);
 
 	}
