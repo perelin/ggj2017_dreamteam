@@ -1,8 +1,8 @@
-#rem - an exploration game about REM sleep and dream waves
+# rem - an exploration game about REM sleep and dream waves
 
 ![rem title screen](/images/title_screen.png)
 
-The game was created during the 2017 Global Game Jam (Topic "Waves") in Karlsruhe, Germany.
+The game was created during the 2017 Global Game Jam (Topic "Waves") in Karlsruhe, Germany hosted by the [GameLab Karlsruhe](http://postdigital.hfg-karlsruhe.de/gamelab/)
 For further information on the GGJ17 visit http://globalgamejam.org/2017/games/rem.
 
 ## Idea
@@ -18,21 +18,27 @@ But now in a scattered dream realm our mind created no doubt that this is realit
 ## Gameplay
 
 You guide Rem through the different stages of sleep to the final and relaxing REM phase.
-It's a game about a dreamworld with the art style of Gustav Klimt.
+It's a game about a dreamworld with the art style of [Gustav Klimt](https://en.wikipedia.org/wiki/Gustav_klimt).
 You experience the beauty a dream can offer.
 At the same time you have to face the weird cruelties our subconsciousness is capable to create.
 With the Tobii eye tracking software (or a mouse as a substitute) you interact and navigate through this dream and need to overcome your nightmares. 
 
 ## Screenshots
 
-![meeting a fish in rem](/images/fish.png)
+![meeting a fish in rem](./images/fish.png)
 
-![interacting with a goddess statue](/images/goddess.png)
+![interacting with a goddess statue](./images/goddess.png)
+
+![test](https://upload.wikimedia.org/wikipedia/commons/7/7c/Gustav_Klimt_-_Hope%2C_II_-_Google_Art_Project.jpg)
+Gustav Klimt - Hope II, 1907–08, Museum of Modern Art, New York City
+
 ## License
 
 All pictures, models, audio tracks and audio effect where created by the team.
 Please ask before using them in your own projects.
 
-## final words
+## final thoughts
 
-Artzi! Waves of Pain!!!!
+Artzi!
+
+[waves of pain!!!](http://globalgamejam.org/2017/games/waves-pain)
