@@ -15,7 +15,7 @@ public class DiscoveryScript : MonoBehaviour {
 	private float currentTimer = 0;
 
 	Ray ray;
-	RaycastHit2D hit;
+	RaycastHit2D[] hits;
 
 	// Use this for initialization
 	void Start () {
@@ -25,10 +25,21 @@ public class DiscoveryScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		ray = Camera.main.ScreenPointToRay(TrackingStuff.getTrackingPos());
-		hit = Physics2D.Raycast(ray.origin, ray.direction);
+        hits = Physics2D.RaycastAll(ray.origin, ray.direction);
 
-		// if collision: increment timer
-		if (hit.collider != null && hit.collider == this.gameObject.GetComponent<Collider2D> ()) {
+        bool hasHit = false;
+
+        foreach (var hit in hits)
+        {
+            if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+            {
+                hasHit = true;
+                break;
+            }
+        }
+
+        // if collision: increment timer
+        if (hasHit) {
 			currentTimer += Time.deltaTime;
 			if (currentTimer > timeToAction) {
 				DoAction ();

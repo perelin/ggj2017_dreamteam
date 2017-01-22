@@ -14,7 +14,7 @@ public class DiscoveryScript2 : MonoBehaviour
     private bool inside = false;
 
     Ray ray;
-    RaycastHit2D hit;
+    RaycastHit2D[] hits;
 
 
     // Use this for initialization
@@ -29,10 +29,20 @@ public class DiscoveryScript2 : MonoBehaviour
         var trackPos = TrackingStuff.getTrackingPos();
 
         ray = Camera.main.ScreenPointToRay(TrackingStuff.getTrackingPos());
-        hit = Physics2D.Raycast(ray.origin, ray.direction);
+        hits = Physics2D.RaycastAll(ray.origin, ray.direction);
 
-        // if collision: increment timer
-        if (hit.collider != null && hit.collider == this.gameObject.GetComponent<Collider2D>())
+        bool hasHit = false;
+
+        foreach (var hit in hits)
+        {
+            if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+            {
+                hasHit = true;
+                break;
+            }
+        }
+
+        if (hasHit)
         {
             if (!inside)
             {
