@@ -29,12 +29,12 @@ public class HourglassScript : MonoBehaviour {
 
     void PerformEnter ()
     {
-        _animator.SetTrigger("stopTrigger");
+		_animator.SetBool ("inside", true);
         ContentAnimator.enabled = false;
     }
     void PerformExit ()
     {
-        _animator.SetTrigger("restartTrigger");
+		_animator.SetBool ("inside", false);
         ContentAnimator.enabled = true;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class UncoverScript : MonoBehaviour {
 
-    public float Time = 2.5f;
+    public float Time = 1.5f;
 
     void PerformAction()
     {
